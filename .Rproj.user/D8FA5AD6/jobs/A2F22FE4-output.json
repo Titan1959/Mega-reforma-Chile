@@ -1,0 +1,3 @@
+[1,"==> quarto preview 01_empleo_publico.qmd --to html --no-watch-inputs --no-browse\n\n"]
+[1,"pandoc \n  to: html\n  output-file: 01_empleo_publico.html\n  standalone: true\n  embed-resources: true\n  section-divs: true\n  html-math-method: mathjax\n  wrap: none\n  default-image-extension: png\n  toc: true\n  \nmetadata\n  document-css: false\n  link-citations: true\n  date-format: long\n  lang: en\n  title: Análisis del Empleo Público en Chile (2021-2025)\n  subtitle: Lectura y procesamiento dinámico de datos oficiales DIPRES\n  author: Maximiliano\n  theme: flatly\n  \n"]
+[1,"Output created: 01_empleo_publico.html\n\nWatching files for changes\nBrowse at http://localhost:5798/\n"]

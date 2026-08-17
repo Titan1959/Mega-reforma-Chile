@@ -1,0 +1,88 @@
+---
+title: "Análisis del Empleo Público en Chile (2021-2025)"
+subtitle: "Lectura y procesamiento dinámico de datos oficiales DIPRES"
+author: "Maximiliano"
+format:
+  html:
+    theme: flatly
+    toc: true
+    embed-resources: true
+execute:
+  echo: false
+  warning: false
+---
+
+**El contexto del debate**
+
+El siguiente análisis procesa directamente la base de datos descargada de la **Dirección de Presupuestos (DIPRES)** para auditar la evolución de la plantilla del Estado sin intermediarios.
+
+```{r}
+library(readxl)
+library(tidyverse)
+library(scales)
+library(ggrepel)
+
+
+# 1. Cargar y limpiar la estructura del Excel
+df_raw <- read_excel("Personal disponible en el sector publico.xlsx")
+
+df_clean <- df_raw %>%
+  rename(Categoria = 1) %>%
+  # Quitar los puntos de miles y convertir a formato numérico
+  mutate(across(`2021`:`2025`, ~ as.numeric(gsub("\\.", "", as.character(.x))))) %>%
+  # Asignar la dependencia a cada fila de desglose
+  mutate(
+    Dependencia = if_else(!Categoria %in% c("Permanente", "Transitorio"), Categoria, NA_character_)
+  ) %>%
+  fill(Dependencia, .direction = "down") %>%
+  # Filtrar solo los totales por dependencia (excluyendo el Sector Público global)
+  filter(
+    Categoria == Dependencia,
+    Dependencia != "Sector Público"
+  )
+
+# 2. Transformación a formato Tidy (Largo)
+df_tidy <- df_clean %>%
+  pivot_longer(
+    cols = `2021`:`2025`,
+    names_to = "Anio",
+    values_to = "Cargos"
+  ) %>%
+  mutate(
+    Anio = as.numeric(Anio),
+    Etiqueta = number(Cargos, big.mark = ".", accuracy = 1)
+  )
+
+# 3. Paleta de colores institucional
+colores_foco <- c(
+  "Administración Central"       = "#1a365d",
+  "Municipalidades"              = "#dd6b20",
+  "Universidades y CFT Estatales"= "#4a5568",
+  "Empresas Públicas"            = "#718096",
+  "Organismos Autónomos"         = "#a0aec0",
+  "Otras Instituciones Públicas" = "#d5d5d5"
+)
+
+# 4. Generación del gráfico desde el archivo procesado
+ggplot(df_tidy, aes(x = Anio, y = Cargos, color = Dependencia, group = Dependencia)) +
+  geom_line(linewidth = 1.2) +
+  geom_point(size = 3) +
+  geom_text_repel(
+    aes(label = Etiqueta),
+    size = 3.2,
+    fontface = "bold",
+    show.legend = FALSE,
+    box.padding = 0.35,
+    segment.color = NA
+  ) +
+  scale_y_continuous(labels = label_number(big.mark = "."), breaks = seq(0, 550000, by = 50000), limits = c(0, 560000)) +
+  scale_x_continuous(breaks = 2021:2025) +
+  scale_color_manual(values = colores_foco) +
+  labs(
+    title = "¿Dónde creció el empleo público en Chile? (2021-2025)",
+    subtitle = "Evolución calculada en R a partir de la base oficial DIPRES",
+    x = NULL, y = "Número de Cargos", color = NULL,
+    caption = "Fuente: Procesamiento propio de la base de datos DIPRES"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "bottom", panel.grid.minor = element_blank())
