@@ -1,0 +1,30 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Política para no políticos",
+    "section": "",
+    "text": "Bienvenido a Política para no políticos, un laboratorio de datos donde analizamos las reformas, el gasto público y las transformaciones del Estado chileno utilizando bases de datos oficiales."
+  },
+  {
+    "objectID": "index.html#quarto",
+    "href": "index.html#quarto",
+    "title": "Política para no políticos",
+    "section": "Quarto",
+    "text": "Quarto\nQuarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+  },
+  {
+    "objectID": "index.html#running-code",
+    "href": "index.html#running-code",
+    "title": "Política para no políticos",
+    "section": "Running Code",
+    "text": "Running Code\nWhen you click the Render button a document will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2\n\n\nYou can add options to executable code like this\n\n\n[1] 4\n\n\nThe echo: false option disables the printing of code (only output is displayed)."
+  },
+  {
+    "objectID": "01_empleo_publico.html",
+    "href": "01_empleo_publico.html",
+    "title": "Análisis del Empleo Público en Chile (2021-2025)",
+    "section": "",
+    "text": "El contexto del debate\nEl siguiente análisis procesa directamente la base de datos descargada de la Dirección de Presupuestos (DIPRES) para auditar la evolución de la plantilla del Estado sin intermediarios.\nlibrary(readxl) library(tidyverse) library(scales) library(ggrepel)\n\n1. Detectar automáticamente el archivo Excel en la carpeta del proyecto\n\n\n2. Cargar y limpiar la estructura del Excel\ndf_raw &lt;- read_excel(“Personal disponible en el sector publico.xlsx”)\ndf_clean &lt;- df_raw %&gt;% rename(Categoria = 1) %&gt;% # Quitar los puntos de miles y convertir a formato numérico mutate(across(2021:2025, ~ as.numeric(gsub(“\\.”, ““, as.character(.x))))) %&gt;% # Asignar la dependencia a cada fila de desglose mutate( Dependencia = if_else(!Categoria %in% c(”Permanente”, “Transitorio”), Categoria, NA_character_) ) %&gt;% fill(Dependencia, .direction = “down”) %&gt;% # Filtrar solo los totales por dependencia (excluyendo el Sector Público global) filter( Categoria == Dependencia, Dependencia != “Sector Público” )\n\n\n3. Transformación a formato Tidy (Largo)\ndf_tidy &lt;- df_clean %&gt;% pivot_longer( cols = 2021:2025, names_to = “Anio”, values_to = “Cargos” ) %&gt;% mutate( Anio = as.numeric(Anio), Etiqueta = number(Cargos, big.mark = “.”, accuracy = 1) )\n\n\n4. Paleta de colores institucional\ncolores_foco &lt;- c( “Administración Central” = “#1a365d”, “Municipalidades” = “#dd6b20”, “Universidades y CFT Estatales”= “#4a5568”, “Empresas Públicas” = “#718096”, “Organismos Autónomos” = “#a0aec0”, “Otras Instituciones Públicas” = “#d5d5d5” )\n\n\n5. Generación del gráfico desde el archivo procesado\nggplot(df_tidy, aes(x = Anio, y = Cargos, color = Dependencia, group = Dependencia)) + geom_line(linewidth = 1.2) + geom_point(size = 3) + geom_text_repel( aes(label = Etiqueta), size = 3.2, fontface = “bold”, show.legend = FALSE, box.padding = 0.35, segment.color = NA ) + scale_y_continuous(labels = label_number(big.mark = “.”), breaks = seq(0, 550000, by = 50000), limits = c(0, 560000)) + scale_x_continuous(breaks = 2021:2025) + scale_color_manual(values = colores_foco) + labs( title = “¿Dónde creció el empleo público en Chile? (2021-2025)”, subtitle = “Evolución calculada en R a partir de la base oficial DIPRES”, x = NULL, y = “Número de Cargos”, color = NULL, caption = “Fuente: Procesamiento propio de la base de datos DIPRES” ) + theme_minimal() + theme(legend.position = “bottom”, panel.grid.minor = element_blank())"
+  }
+]
