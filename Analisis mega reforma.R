@@ -113,3 +113,6 @@ p2 <- ggplot(df_grafico, aes(x = Anio, y = Cargos, color = Dependencia, group = 
 # Renderizar y guardar
 print(p2)
 ggsave("grafico_empleo_detalle.png", plot = p2, width = 9, height = 6, dpi = 300)
+
+library(knitr)
+
