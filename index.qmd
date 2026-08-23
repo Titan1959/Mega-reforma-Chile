@@ -5,13 +5,13 @@ subtitle: "Auditoría de datos y evidencia sobre el Estado chileno, sin sesgos n
 
 Bienvenido a **Política para no políticos**, un laboratorio de datos donde analizamos las reformas, el gasto público y las transformaciones del Estado chileno utilizando bases de datos oficiales.
 
----
+------------------------------------------------------------------------
 
 ### 📊 Análisis disponibles
 
 #### 1. [¿Dónde creció el empleo público en Chile? (2021-2025)](01_empleo_publico.html)
-Un análisis detallado con datos de la Dirección de Presupuestos (DIPRES) para auditar la evolución de los cargos en la Administración Central, Municipalidades y otros organismos estatales.
----
+
+## Un análisis detallado con datos de la Dirección de Presupuestos (DIPRES) para auditar la evolución de los cargos en la Administración Central, Municipalidades y otros organismos estatales.
 
 ## Quarto
 

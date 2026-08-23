@@ -1,15 +1,15 @@
 ---
-  title: "Análisis del Empleo Público en Chile (2021-2025)"
+title: "Análisis del Empleo Público en Chile (2021-2025)"
 subtitle: "Lectura y procesamiento dinámico de datos oficiales DIPRES"
 author: "Maximiliano"
 format:
   html:
-  theme: flatly
-toc: true
-embed-resources: true
+    theme: flatly
+    toc: true
+    embed-resources: true
 execute:
   echo: false
-warning: false
+  warning: false
 ---
   
   **El contexto del debate**
@@ -121,3 +121,9 @@ df_comp <- df_tidy %>%
   select(Dependencia, `2021`, `2025`, `Aumento Absoluto`, `Crecimiento Total (%)`)
 
 kable(df_comp)
+
+
+
+
+
+
