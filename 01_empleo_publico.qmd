@@ -22,9 +22,8 @@ library(tidyverse)
 library(scales)
 library(ggrepel)
 
-# 1. Detectar automáticamente el archivo Excel en la carpeta del proyecto
 
-# 2. Cargar y limpiar la estructura del Excel
+# 1. Cargar y limpiar la estructura del Excel
 df_raw <- read_excel("Personal disponible en el sector publico.xlsx")
 
 df_clean <- df_raw %>%
@@ -42,7 +41,7 @@ df_clean <- df_raw %>%
     Dependencia != "Sector Público"
   )
 
-# 3. Transformación a formato Tidy (Largo)
+# 2. Transformación a formato Tidy (Largo)
 df_tidy <- df_clean %>%
   pivot_longer(
     cols = `2021`:`2025`,
@@ -54,7 +53,7 @@ df_tidy <- df_clean %>%
     Etiqueta = number(Cargos, big.mark = ".", accuracy = 1)
   )
 
-# 4. Paleta de colores institucional
+# 3. Paleta de colores institucional
 colores_foco <- c(
   "Administración Central"       = "#1a365d",
   "Municipalidades"              = "#dd6b20",
@@ -64,7 +63,7 @@ colores_foco <- c(
   "Otras Instituciones Públicas" = "#d5d5d5"
 )
 
-# 5. Generación del gráfico desde el archivo procesado
+# 4. Generación del gráfico desde el archivo procesado
 ggplot(df_tidy, aes(x = Anio, y = Cargos, color = Dependencia, group = Dependencia)) +
   geom_line(linewidth = 1.2) +
   geom_point(size = 3) +
@@ -87,3 +86,28 @@ ggplot(df_tidy, aes(x = Anio, y = Cargos, color = Dependencia, group = Dependenc
   ) +
   theme_minimal() +
   theme(legend.position = "bottom", panel.grid.minor = element_blank())
+
+
+
+
+#**5. Generación del gráfico desde el archivo procesado**
+
+
+#| echo: true
+#| warning: false
+#| message: false
+
+ggplot(df_tidy, aes(x = Anio, y = Cargos, color = Dependencia, group = Dependencia)) + 
+  geom_line(linewidth = 1.2) + 
+  geom_point(size = 3) + 
+  geom_text_repel(aes(label = Etiqueta), size = 3.2, fontface = "bold", show.legend = FALSE, box.padding = 0.35, segment.color = NA) + 
+  scale_y_continuous(labels = label_number(big.mark = "."), breaks = seq(0, 550000, by = 50000), limits = c(0, 560000)) + 
+  scale_x_continuous(breaks = 2021:2025) + 
+  scale_color_manual(values = colores_foco) + 
+  labs(title = "¿Dónde creció el empleo público en Chile? (2021-2025)", 
+       subtitle = "Evolución calculada en R a partir de la base oficial DIPRES", 
+       x = NULL, y = "Número de Cargos", color = NULL, 
+       caption = "Fuente: Procesamiento propio de la base de datos DIPRES") + 
+  theme_minimal() + 
+  theme(legend.position = "bottom", panel.grid.minor = element_blank())
+```
