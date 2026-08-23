@@ -15,6 +15,14 @@ warning: false
   **El contexto del debate**
   
   El siguiente análisis procesa directamente la base de datos descargada de la **Dirección de Presupuestos (DIPRES)** para auditar la evolución de la plantilla del Estado sin intermediarios.
+  
+  ::: {.callout-important title="Hallazgo Clave"}
+El crecimiento del aparato estatal entre 2021 y 2025 no ha sido homogéneo. La **Administración Central** explica la mayor parte de la expansión de cargos, influenciada por la creación de nuevas instituciones públicas y el refuerzo de dotaciones en sectores críticos.
+:::
+
+::: {.callout-note title="Nota de Metodología"}
+Los datos consideran la dotación disponible informada en los informes trimestrales de la Dirección de Presupuestos (DIPRES), excluyendo personal a honorarios directos.
+:::
 
 ```{r}
 library(readxl)
