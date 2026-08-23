@@ -12,11 +12,11 @@ execute:
   warning: false
 ---
   
-  **El contexto del debate**
-  
-  El siguiente análisis procesa directamente la base de datos descargada de la **Dirección de Presupuestos (DIPRES)** para auditar la evolución de la plantilla del Estado sin intermediarios.
-  
-  ::: {.callout-important title="Hallazgo Clave"}
+**El contexto del debate**
+
+El siguiente análisis procesa directamente la base de datos descargada de la **Dirección de Presupuestos (DIPRES)** para auditar la evolución de la plantilla del Estado sin intermediarios.
+
+::: {.callout-important title="Hallazgo Clave"}
 El crecimiento del aparato estatal entre 2021 y 2025 no ha sido homogéneo. La **Administración Central** explica la mayor parte de la expansión de cargos, influenciada por la creación de nuevas instituciones públicas y el refuerzo de dotaciones en sectores críticos.
 :::
 
@@ -92,6 +92,11 @@ ggplot(df_tidy, aes(x = Anio, y = Cargos, color = Dependencia, group = Dependenc
   theme_minimal() +
   theme(legend.position = "bottom", panel.grid.minor = element_blank())
 
+```
+
+### 📈 Variación Porcentual Año a Año por Dependencia
+
+```{r}
 df_yoy <- df_tidy %>%
   group_by(Dependencia) %>%
   arrange(Anio) %>%
@@ -104,8 +109,11 @@ df_yoy <- df_tidy %>%
   pivot_wider(names_from = Anio, values_from = Var_pct_label)
 
 kable(df_yoy, col.names = c("Dependencia", "2021", "2022", "2023", "2024", "2025"))
+```
 
+### ⚖️ Comparación Periodo Completo (2021 vs 2025)
 
+```{r}
 df_comp <- df_tidy %>%
   filter(Anio %in% c(2021, 2025), Dependencia %in% c("Administración Central", "Municipalidades")) %>%
   select(Dependencia, Anio, Cargos) %>%
@@ -121,7 +129,7 @@ df_comp <- df_tidy %>%
   select(Dependencia, `2021`, `2025`, `Aumento Absoluto`, `Crecimiento Total (%)`)
 
 kable(df_comp)
-
+```
 
 
 
