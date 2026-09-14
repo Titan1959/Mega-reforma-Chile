@@ -1,137 +1,53 @@
 ---
-title: "Análisis del Empleo Público en Chile (2021-2025)"
-subtitle: "Lectura y procesamiento dinámico de datos oficiales DIPRES"
-author: "Maximiliano"
-format:
-  html:
-    theme: flatly
-    toc: true
-    embed-resources: true
-execute:
-  echo: false
-  warning: false
+title: "Empleo público y capacidad estatal"
+subtitle: "DIPRES · Promedio anual de cargos · 2021–2025"
 ---
-  
-**El contexto del debate**
 
-El siguiente análisis procesa directamente la base de datos descargada de la **Dirección de Presupuestos (DIPRES)** para auditar la evolución de la plantilla del Estado sin intermediarios.
+```{r}
+#| include: false
+source("scripts/graficos.R", encoding="UTF-8")
+```
 
-::: {.callout-important title="Hallazgo Clave"}
-El crecimiento del aparato estatal entre 2021 y 2025 no ha sido homogéneo. La **Administración Central** explica la mayor parte de la expansión de cargos, influenciada por la creación de nuevas instituciones públicas y el refuerzo de dotaciones en sectores críticos.
+
+## La pregunta
+
+¿Dónde creció el personal disponible del sector público antes del plan? Es un antecedente para discutir reorganización y gasto, pero el número de cargos no mide por sí solo eficiencia ni calidad de los servicios.
+
+```{r}
+#| include: false
+e <- leer('empleo_publico')
+total <- filter(e,dependencia=='Sector Público')
+comp <- e |> filter(dependencia!='Sector Público',anio%in%c(2021,2025)) |> pivot_wider(names_from=anio,values_from=cargos,names_prefix='a') |> mutate(cambio=a2025-a2021,variacion=100*(a2025/a2021-1))
+```
+
+::: {.callout-note title="Resultado calculado"}
+El total pasó de **`r n(total$cargos[total$anio==2021])`** a **`r n(total$cargos[total$anio==2025])`** cargos: un aumento de **`r n(100*(tail(total$cargos,1)/head(total$cargos,1)-1),1)`%**. La Administración Central concentra el mayor incremento absoluto entre las dependencias de esta tabla.
 :::
 
-::: {.callout-note title="Nota de Metodología"}
-Los datos consideran la dotación disponible informada en los informes trimestrales de la Dirección de Presupuestos (DIPRES), excluyendo personal a honorarios directos.
-:::
+## Evolución de las principales dependencias
 
 ```{r}
-library(readxl)
-library(tidyverse)
-library(scales)
-library(ggrepel)
-library(knitr)
-
-# 1. Cargar y limpiar la estructura del Excel
-df_raw <- read_excel("Personal disponible en el sector publico.xlsx")
-
-df_clean <- df_raw %>%
-  rename(Categoria = 1) %>%
-  mutate(across(`2021`:`2025`, ~ as.numeric(gsub("\\.", "", as.character(.x))))) %>%
-  mutate(
-    Dependencia = if_else(!Categoria %in% c("Permanente", "Transitorio"), Categoria, NA_character_)
-  ) %>%
-  fill(Dependencia, .direction = "down") %>%
-  filter(
-    Categoria == Dependencia,
-    Dependencia != "Sector Público"
-  )
-
-# 2. Transformación a formato Tidy (Garantizando filas únicas)
-df_tidy <- df_clean %>%
-  pivot_longer(
-    cols = `2021`:`2025`,
-    names_to = "Anio",
-    values_to = "Cargos"
-  ) %>%
-  mutate(Anio = as.numeric(Anio)) %>%
-  group_by(Dependencia, Anio) %>%
-  summarise(Cargos = sum(Cargos, na.rm = TRUE), .groups = "drop") %>%
-  mutate(Etiqueta = number(Cargos, big.mark = ".", accuracy = 1))
-
-# 3. Paleta de colores institucional
-colores_foco <- c(
-  "Administración Central"        = "#1a365d",
-  "Municipalidades"               = "#dd6b20",
-  "Universidades y CFT Estatales" = "#4a5568",
-  "Empresas Públicas"             = "#718096",
-  "Organismos Autónomos"          = "#a0aec0",
-  "Otras Instituciones Públicas"  = "#d5d5d5"
-)
-
-# 4. Generación del gráfico
-ggplot(df_tidy, aes(x = Anio, y = Cargos, color = Dependencia, group = Dependencia)) +
-  geom_line(linewidth = 1.2) +
-  geom_point(size = 3) +
-  geom_text_repel(
-    aes(label = Etiqueta),
-    size = 3.2,
-    fontface = "bold",
-    show.legend = FALSE,
-    box.padding = 0.35,
-    segment.color = NA
-  ) +
-  scale_y_continuous(labels = label_number(big.mark = "."), breaks = seq(0, 550000, by = 50000), limits = c(0, 560000)) +
-  scale_x_continuous(breaks = 2021:2025) +
-  scale_color_manual(values = colores_foco) +
-  labs(
-    title = "¿Dónde creció el empleo público en Chile? (2021-2025)",
-    subtitle = "Evolución calculada en R a partir de la base oficial DIPRES",
-    x = NULL, y = "Número de Cargos", color = NULL,
-    caption = "Fuente: Procesamiento propio de la base de datos DIPRES"
-  ) +
-  theme_minimal() +
-  theme(legend.position = "bottom", panel.grid.minor = element_blank())
-
+#| fig-alt: "Series 2021 a 2025 de cargos de la Administración Central y municipalidades; ambas crecen, con mayor incremento en la primera."
+#| fig-cap: "Fuente: DIPRES, archivo aportado al proyecto, hoja General. Promedio anual de cargos."
+lineas(filter(e,dependencia%in%c('Administración Central','Municipalidades')),'cargos','dependencia','Cargos (promedio anual)')
 ```
-
-### 📈 Variación Porcentual Año a Año por Dependencia
 
 ```{r}
-df_yoy <- df_tidy %>%
-  group_by(Dependencia) %>%
-  arrange(Anio) %>%
-  mutate(
-    Var_pct = (Cargos - lag(Cargos)) / lag(Cargos) * 100,
-    Var_pct_label = ifelse(is.na(Var_pct), "-", sprintf("%+.2f%%", Var_pct))
-  ) %>%
-  ungroup() %>%
-  select(Dependencia, Anio, Var_pct_label) %>%
-  pivot_wider(names_from = Anio, values_from = Var_pct_label)
-
-kable(df_yoy, col.names = c("Dependencia", "2021", "2022", "2023", "2024", "2025"))
+#| tbl-cap: "Cambio por dependencia, 2021–2025"
+tabla(comp |> transmute(Dependencia=dependencia,`2021`=a2021,`2025`=a2025,`Cambio en cargos`=cambio,`Variación (%)`=variacion))
 ```
 
-### ⚖️ Comparación Periodo Completo (2021 vs 2025)
+## Lectura y limitaciones
 
-```{r}
-df_comp <- df_tidy %>%
-  filter(Anio %in% c(2021, 2025), Dependencia %in% c("Administración Central", "Municipalidades")) %>%
-  select(Dependencia, Anio, Cargos) %>%
-  pivot_wider(names_from = Anio, values_from = Cargos, names_prefix = "Anio_") %>%
-  mutate(
-    Diff_Abs = Anio_2025 - Anio_2021,
-    Var_Total_Pct = (Anio_2025 - Anio_2021) / Anio_2021 * 100,
-    `2021` = number(Anio_2021, big.mark = "."),
-    `2025` = number(Anio_2025, big.mark = "."),
-    `Aumento Absoluto` = number(Diff_Abs, big.mark = "."),
-    `Crecimiento Total (%)` = sprintf("%+.2f%%", Var_Total_Pct)
-  ) %>%
-  select(Dependencia, `2021`, `2025`, `Aumento Absoluto`, `Crecimiento Total (%)`)
+El crecimiento desigual orienta dónde profundizar. No permite afirmar que existan cargos prescindibles ni explicar el cambio por nuevas instituciones sin desagregar servicios y funciones. Los traspasos entre dependencias también deben examinarse antes de interpretar aumentos como contrataciones nuevas.
 
-kable(df_comp)
-```
+- **Unidad:** promedio anual de cargos, no personas únicas ni fotografía al 31 de diciembre. Una persona puede desempeñar más de un cargo.
+- **Cobertura:** el archivo contiene exclusiones y reglas institucionales; no es un censo irrestricto de todo trabajador financiado por el Estado. Las notas excluyen senadores y diputados y aplican cobertura acotada a Fuerzas Armadas y de Orden.
+- **Comparabilidad:** las ediciones pueden revisar cifras y metodología. Esta página usa una sola edición y verifica que las dependencias sumen el total de cada año.
+- **Para evaluar recortes:** faltan remuneraciones, funciones, demanda de atención, productividad y consecuencias sobre los servicios. No se calculan ahorros a partir del número de cargos.
 
+## Datos y fuente
 
+[Descargar CSV](datos/empleo_publico.csv) · [Procesamiento R](scripts/procesar_datos.R) · [Cuadros de empleo público DIPRES](https://www.dipres.gob.cl/598/w3-article-190248.html).
 
-
-
+Se conserva la base que ya estaba en el proyecto. Su fecha original de descarga no quedó registrada; el inventario documenta la copia utilizada ahora.

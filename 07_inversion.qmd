@@ -1,0 +1,46 @@
+---
+title: "Inversión: una referencia para la reactivación"
+subtitle: "Banco Central de Chile · Formación bruta de capital fijo · 2018–2025"
+---
+
+```{r}
+#| include: false
+source("scripts/graficos.R", encoding="UTF-8")
+```
+
+
+## La pregunta
+
+¿Qué proporción del PIB representa la inversión en activos fijos antes del plan? El anuncio de abril contempla estabilidad tributaria para proyectos de inversión. Esta serie ofrece contexto macroeconómico, no una estimación del efecto de ese incentivo. [Fuente del anuncio](https://msgg.gob.cl/wp/2026/04/23/presidente-kast-firma-proyecto-de-ley-del-plan-de-reconstruccion-nacional-y-desarrollo-economico-y-social/).
+
+```{r}
+#| include: false
+d<-leer('inversion') |> filter(anio>=2018)
+```
+
+::: {.callout-note title="Resultado calculado"}
+En 2025, la formación bruta de capital fijo equivale a **`r n(d$fbcf_pct_pib[d$anio==2025],1)`% del PIB**, frente a **`r n(d$fbcf_pct_pib[d$anio==2024],1)`%** en 2024. La diferencia es en puntos porcentuales del PIB, no una tasa de crecimiento real de la inversión.
+:::
+
+## Formación bruta de capital fijo / PIB
+
+```{r}
+#| fig-alt: "Relación entre formación bruta de capital fijo y PIB a precios corrientes; alcanza 24,1 por ciento en 2025."
+#| fig-cap: "Fuente: Banco Central, agregados de inversión en relación al PIB, referencia 2018. Precios corrientes."
+lineas(d,'fbcf_pct_pib',unidad='FBCF / PIB (%)')
+```
+
+## Lectura y limitaciones
+
+El indicador relaciona la adquisición de activos fijos con el tamaño de la economía. Una variación puede deberse a cambios de inversión, del PIB o de precios relativos; no identifica obstáculos regulatorios por sí sola.
+
+- Se usa la serie a **precios corrientes** y se evita mezclarla con la relación a precios del año anterior encadenados que también aparece en la tabla.
+- No es inversión extranjera directa ni ejecución presupuestaria. Es un agregado de la economía y no separa los proyectos alcanzados por el plan.
+- El HTML oficial guarda valores con un decimal. Se respeta esa precisión y no se presenta exactitud adicional ficticia.
+- Las cuentas nacionales están sujetas a revisiones. La descarga preserva la versión usada; no se atribuyen movimientos hasta 2025 a una propuesta de 2026.
+
+**Para evaluar los incentivos:** se necesitan expedientes y montos de proyectos, plazos de permisos, elegibilidad, costo tributario y una estrategia de comparación que separe el efecto del plan del ciclo económico.
+
+## Datos y fuente
+
+[CSV 2013–2025](datos/inversion.csv) · [Procesamiento R](scripts/procesar_datos.R) · [Tabla del Banco Central](https://si3.bcentral.cl/Siete/Es/Siete/Cuadro/CAP_CCNN/MN_CCNN76/CCNN2018_G3_RPIB_A/637801697822047501).

@@ -1,18 +1,65 @@
 project:
   type: website
   output-dir: docs
-
+  execute-dir: project
+  render:
+    - index.qmd
+    - 01_empleo_publico.qmd
+    - 02_salud_fonasa.qmd
+    - 03_tributacion.qmd
+    - 04_empleo_formal.qmd
+    - 05_finanzas_publicas.qmd
+    - 06_vivienda.qmd
+    - 07_inversion.qmd
+    - metodologia.qmd
+  resources:
+    - datos/**
+    - scripts/*.R
+    - fuentes/manifest.csv
 website:
   title: "Política para no políticos"
+  site-url: https://titan1959.github.io/Mega-reforma-Chile/
   navbar:
     background: "#1a365d"
     left:
-      - text: "Inicio"
+      - text: Inicio
         href: index.qmd
-      - text: "Empleo Público"
+      - text: Análisis del plan
+        menu:
+          - text: Tributación
+            href: 03_tributacion.qmd
+          - text: Empleo
+            href: 04_empleo_formal.qmd
+          - text: Finanzas públicas
+            href: 05_finanzas_publicas.qmd
+          - text: Vivienda
+            href: 06_vivienda.qmd
+          - text: Inversión
+            href: 07_inversion.qmd
+      - text: Capacidad estatal
         href: 01_empleo_publico.qmd
-
+      - text: Salud
+        href: 02_salud_fonasa.qmd
+      - text: Método y fuentes
+        href: metodologia.qmd
+  page-footer:
+    left: "Maximiliano · Análisis reproducible con R y Quarto"
+    right: "Datos de diagnóstico · Edición 14 de septiembre de 2026"
 format:
   html:
     theme: flatly
+    lang: es
     toc: true
+    toc-title: En esta página
+    css: styles.css
+    code-fold: true
+    code-summary: Ver código R
+    fig-width: 8
+    fig-height: 4.8
+    fig-dpi: 160
+    link-external-newwindow: true
+execute:
+  echo: true
+  warning: false
+  message: false
+  cache: false

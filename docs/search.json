@@ -1,37 +1,352 @@
 [
   {
+    "objectID": "metodologia.html",
+    "href": "metodologia.html",
+    "title": "Método, fuentes y estado del proyecto",
+    "section": "",
+    "text": "Decisiones del autor: desarrollar un portafolio de investigación en ciencia política; mantener R, Quarto y GitHub Pages; partir de una mirada general y continuar por temas; preservar empleo público y salud; centrar esta ampliación en el Plan de Reconstrucción Nacional de 2026.\nHipótesis y propuestas de trabajo, todavía no resultados: interpretar una transición general desde prestación estatal a subsidios a la demanda; vincular cobertura sanitaria con capacidad estatal; medir migración Isapre–Fonasa; analizar fallos judiciales y sostenibilidad. Estas líneas requieren contrastación. El traspaso de Gemini las mencionaba, pero eso no constituye evidencia empírica ni prueba de que formen parte de este plan.\nHecho en esta edición: descarga de cinco fuentes institucionales nuevas; procesamiento reproducible; comprobaciones de consistencia; cinco páginas nuevas; actualización del empleo público y elaboración de una primera página descriptiva de Fonasa."
+  },
+  {
+    "objectID": "metodologia.html#qué-se-acordó-y-qué-sigue-siendo-una-propuesta",
+    "href": "metodologia.html#qué-se-acordó-y-qué-sigue-siendo-una-propuesta",
+    "title": "Método, fuentes y estado del proyecto",
+    "section": "",
+    "text": "Decisiones del autor: desarrollar un portafolio de investigación en ciencia política; mantener R, Quarto y GitHub Pages; partir de una mirada general y continuar por temas; preservar empleo público y salud; centrar esta ampliación en el Plan de Reconstrucción Nacional de 2026.\nHipótesis y propuestas de trabajo, todavía no resultados: interpretar una transición general desde prestación estatal a subsidios a la demanda; vincular cobertura sanitaria con capacidad estatal; medir migración Isapre–Fonasa; analizar fallos judiciales y sostenibilidad. Estas líneas requieren contrastación. El traspaso de Gemini las mencionaba, pero eso no constituye evidencia empírica ni prueba de que formen parte de este plan.\nHecho en esta edición: descarga de cinco fuentes institucionales nuevas; procesamiento reproducible; comprobaciones de consistencia; cinco páginas nuevas; actualización del empleo público y elaboración de una primera página descriptiva de Fonasa."
+  },
+  {
+    "objectID": "metodologia.html#fuentes-y-unidades",
+    "href": "metodologia.html#fuentes-y-unidades",
+    "title": "Método, fuentes y estado del proyecto",
+    "section": "Fuentes y unidades",
+    "text": "Fuentes y unidades\n\n\n\n\n\n\n\n\n\nArchivo procesado\nInstitución / insumo\nUnidad y cobertura\nPeríodo conservado\n\n\n\n\nEmpleo público\nDIPRES, archivo previo\nPromedio anual de cargos por dependencia\n2021–2025\n\n\nSalud\nArchivos Fonasa aportados\nSuma de beneficiarios por categorías a diciembre\nGráficos 2021–2025; auditoría 2018–2025\n\n\nTributación\nSII, Excel\nPorcentaje del PIB, total de ingresos tributarios\n2009–2025\n\n\nEmpleo\nINE, ENE anual\nTasas (%); ocupados en miles, por sexo\n2010–2025\n\n\nFinanzas públicas\nDIPRES, Gobierno Central Total\nIngresos, gastos y balance, % del PIB\n1990–2025\n\n\nVivienda\nMINVU, metodología completa Censo 2024\nRequerimientos y hogares por región\n2024\n\n\nInversión\nBanco Central, tabla HTML\nFBCF / PIB a precios corrientes (%)\n2013–2025\n\n\n\nDescargar inventario de fuentes y huellas SHA-256. Las huellas identifican la copia utilizada; no certifican por sí solas su validez metodológica. La fecha de incorporación se distingue del período medido. Las descargas iniciales ocurrieron el 13 y 14 de septiembre de 2026; el inventario registra la fecha de consolidación de esta edición. Los archivos previos del autor no tienen fecha original de descarga documentada."
+  },
+  {
+    "objectID": "metodologia.html#cómo-reproducir",
+    "href": "metodologia.html#cómo-reproducir",
+    "title": "Método, fuentes y estado del proyecto",
+    "section": "Cómo reproducir",
+    "text": "Cómo reproducir\nAbrir el proyecto en RStudio, instalar las dependencias de scripts/instalar_paquetes.R y ejecutar desde la raíz:\nsource(\"scripts/procesar_datos.R\", encoding = \"UTF-8\")\nLuego ejecutar en una terminal:\nquarto render\nLos originales nuevos están en las carpetas temáticas. Los CSV originales de salud permanecen en la carpeta local; no se incorporan al sitio. Una copia del repositorio puede renderizar los gráficos con los CSV depurados incluidos; para reconstruirlos desde cero necesita además los originales señalados en el inventario.\nDescargar script de procesamiento · Código compartido de gráficos · Instalación de paquetes · Sesión R utilizada."
+  },
+  {
+    "objectID": "metodologia.html#comprobaciones-realizadas",
+    "href": "metodologia.html#comprobaciones-realizadas",
+    "title": "Método, fuentes y estado del proyecto",
+    "section": "Comprobaciones realizadas",
+    "text": "Comprobaciones realizadas\nSe verifica que las dependencias de empleo público sumen los totales; que los conteos de Fonasa no sean negativos ni faltantes y sus tramos reconcilien; que las tasas tengan unidades válidas; que ingresos menos gastos coincida con el balance fiscal; y que las 16 regiones de vivienda sumen el total nacional. Los gráficos se construyen sobre los archivos depurados, sin cifras simuladas."
+  },
+  {
+    "objectID": "metodologia.html#límites-comunes",
+    "href": "metodologia.html#límites-comunes",
+    "title": "Método, fuentes y estado del proyecto",
+    "section": "Límites comunes",
+    "text": "Límites comunes\nLos análisis son descriptivos y previos al plan. No estiman efectos causales, no prueban que cada medida esté justificada ni sustituyen un análisis del articulado y sus informes financieros. Se evita confundir correlación, diagnóstico del problema y eficacia de la solución.\nPara completar la evaluación faltan: inventario preciso de medidas y versiones; costos fiscales; distribución de beneficios; mecanismos de implementación; y diseños de evaluación adecuados a cada propuesta. No hay un conteo defendible de artículos terminados mientras no exista ese inventario."
+  },
+  {
+    "objectID": "06_vivienda.html",
+    "href": "06_vivienda.html",
+    "title": "Vivienda: magnitud y distribución del déficit",
+    "section": "",
+    "text": "¿Dónde se concentra la necesidad de nuevas viviendas? El plan anunciado incluye reconstrucción y un tratamiento temporal del IVA a viviendas nuevas. El déficit sirve de contexto, pero no identifica compradores elegibles ni damnificados. Fuente del anuncio.\n\n\n\n\n\n\nResultado calculado y conciliado\n\n\n\nLas 16 regiones suman 491.904 requerimientos de nuevas viviendas, coincidiendo con el total nacional de la tabla MINVU. La Región Metropolitana concentra 48,6% de ese total."
+  },
+  {
+    "objectID": "06_vivienda.html#la-pregunta",
+    "href": "06_vivienda.html#la-pregunta",
+    "title": "Vivienda: magnitud y distribución del déficit",
+    "section": "",
+    "text": "¿Dónde se concentra la necesidad de nuevas viviendas? El plan anunciado incluye reconstrucción y un tratamiento temporal del IVA a viviendas nuevas. El déficit sirve de contexto, pero no identifica compradores elegibles ni damnificados. Fuente del anuncio.\n\n\n\n\n\n\nResultado calculado y conciliado\n\n\n\nLas 16 regiones suman 491.904 requerimientos de nuevas viviendas, coincidiendo con el total nacional de la tabla MINVU. La Región Metropolitana concentra 48,6% de ese total."
+  },
+  {
+    "objectID": "06_vivienda.html#déficit-por-región",
+    "href": "06_vivienda.html#déficit-por-región",
+    "title": "Vivienda: magnitud y distribución del déficit",
+    "section": "Déficit por región",
+    "text": "Déficit por región\n\n\nCódigo\nggplot(d,aes(deficit,reorder(region,deficit)))+geom_col(fill=paleta[1],width=.7)+scale_x_continuous(labels=label_number(big.mark='.',decimal.mark=','))+labs(x='Requerimientos de nuevas viviendas',y=NULL)\n\n\n\n\n\nFuente: MINVU, Censos 2024 y 2002, hoja de metodología completa; columna 2024."
+  },
+  {
+    "objectID": "06_vivienda.html#comparación-respecto-del-número-de-hogares",
+    "href": "06_vivienda.html#comparación-respecto-del-número-de-hogares",
+    "title": "Vivienda: magnitud y distribución del déficit",
+    "section": "Comparación respecto del número de hogares",
+    "text": "Comparación respecto del número de hogares\n\n\nCódigo\nggplot(d,aes(deficit_por_100_hogares,reorder(region,deficit_por_100_hogares)))+geom_col(fill=paleta[2],width=.7)+scale_x_continuous(labels=label_number(decimal.mark=','))+labs(x='Requerimientos por cada 100 hogares',y=NULL)\n\n\n\n\n\nCálculo propio: 100 × déficit cuantitativo / hogares, dentro de la misma tabla y año."
+  },
+  {
+    "objectID": "06_vivienda.html#lectura-y-limitaciones",
+    "href": "06_vivienda.html#lectura-y-limitaciones",
+    "title": "Vivienda: magnitud y distribución del déficit",
+    "section": "Lectura y limitaciones",
+    "text": "Lectura y limitaciones\nEl volumen absoluto y el indicador relativo responden preguntas diferentes: dónde se requieren más viviendas y dónde esa necesidad es mayor respecto del número de hogares. No se debe interpretar este segundo indicador como la probabilidad individual de carecer de vivienda.\n\nSe usa la metodología completa. El archivo ofrece otra versión abreviada para comparar con 2017; mezclar ambas produciría una comparación incorrecta.\nLa tabla informa una corrección de diciembre de 2025. La suma regional fue conciliada con el total de 491.904 de esta edición.\nEs un diagnóstico del Censo 2024, no un catastro de viviendas destruidas por los incendios de 2026, de familias beneficiarias ni de obras pendientes del plan.\nEl déficit no mide precios de viviendas nuevas ni capacidad de pago. No permite estimar cuánto de una reducción del IVA llegará al comprador.\n\nPara evaluar las medidas: agregar catastros de reconstrucción y avance físico, costos por solución, stock y precios de vivienda nueva, y acceso al financiamiento."
+  },
+  {
+    "objectID": "06_vivienda.html#datos-y-fuente",
+    "href": "06_vivienda.html#datos-y-fuente",
+    "title": "Vivienda: magnitud y distribución del déficit",
+    "section": "Datos y fuente",
+    "text": "Datos y fuente\nCSV de las 16 regiones · Procesamiento R · Tablas estadísticas MINVU · Definición y total institucional.\nLa capa geográfica consultada inicialmente sumaba 479.031 y no conciliaba con el total del libro. Se conservó para auditoría, pero no se utiliza en estos gráficos; no se presupone la causa de la discrepancia."
+  },
+  {
+    "objectID": "04_empleo_formal.html",
+    "href": "04_empleo_formal.html",
+    "title": "Empleo: el diagnóstico previo al incentivo",
+    "section": "",
+    "text": "¿Cómo evolucionaron la ocupación y la desocupación antes del incentivo al empleo formal anunciado en abril de 2026? Fuente del anuncio.\n\n\n\n\n\n\nResultado calculado\n\n\n\nEn 2025, la tasa de desocupación anual fue 8,6% y la tasa de ocupación 56,8%. Miden fenómenos distintos y usan denominadores diferentes."
+  },
+  {
+    "objectID": "04_empleo_formal.html#la-pregunta",
+    "href": "04_empleo_formal.html#la-pregunta",
+    "title": "Empleo: el diagnóstico previo al incentivo",
+    "section": "",
+    "text": "¿Cómo evolucionaron la ocupación y la desocupación antes del incentivo al empleo formal anunciado en abril de 2026? Fuente del anuncio.\n\n\n\n\n\n\nResultado calculado\n\n\n\nEn 2025, la tasa de desocupación anual fue 8,6% y la tasa de ocupación 56,8%. Miden fenómenos distintos y usan denominadores diferentes."
+  },
+  {
+    "objectID": "04_empleo_formal.html#ocupación-por-sexo",
+    "href": "04_empleo_formal.html#ocupación-por-sexo",
+    "title": "Empleo: el diagnóstico previo al incentivo",
+    "section": "Ocupación por sexo",
+    "text": "Ocupación por sexo\n\n\nCódigo\nlineas(filter(d,sexo!='Total'),'ocupacion_pct','sexo','Ocupados / población de 15+ (%)')\n\n\n\n\n\nFuente: INE, ENE, estimaciones anuales. Personas de 15 años o más."
+  },
+  {
+    "objectID": "04_empleo_formal.html#desocupación-nacional",
+    "href": "04_empleo_formal.html#desocupación-nacional",
+    "title": "Empleo: el diagnóstico previo al incentivo",
+    "section": "Desocupación nacional",
+    "text": "Desocupación nacional\n\n\nCódigo\nlineas(t,'desocupacion_pct',unidad='Desocupados / fuerza de trabajo (%)')\n\n\n\n\n\nFuente: INE. Desocupados como porcentaje de la fuerza de trabajo."
+  },
+  {
+    "objectID": "04_empleo_formal.html#lectura-y-limitaciones",
+    "href": "04_empleo_formal.html#lectura-y-limitaciones",
+    "title": "Empleo: el diagnóstico previo al incentivo",
+    "section": "Lectura y limitaciones",
+    "text": "Lectura y limitaciones\nLas series muestran diferencias por sexo y variaciones del mercado laboral. No identifican cuántos puestos generaría un incentivo ni cuántas contrataciones ocurrirían de todas formas.\n\nEmpleo total no equivale a empleo formal. Este Excel no desagrega informalidad. Como referencia documental separada, la separata anual ENE 2025 informa una tasa anual de ocupación informal de 26,2%; no se transforma ese dato aislado en una serie inventada.\nLa tasa de ocupación divide ocupados por población de 15 años o más; desocupación divide desocupados por fuerza de trabajo. Sus porcentajes no son complementarios.\nSon estimaciones de una encuesta, sujetas a error muestral y revisiones. No se afirma significancia estadística de las diferencias; estos gráficos no incluyen intervalos de confianza.\nSe usan las estimaciones anuales publicadas por el INE, sin promediar trimestres móviles superpuestos. El CSV conserva también niveles de ocupados, expresados en miles.\n\nPara evaluar el incentivo: se necesitan elegibilidad, remuneraciones, formalidad, duración de los empleos y una comparación que permita distinguir creación adicional de puestos y sustitución de trabajadores."
+  },
+  {
+    "objectID": "04_empleo_formal.html#datos-y-fuente",
+    "href": "04_empleo_formal.html#datos-y-fuente",
+    "title": "Empleo: el diagnóstico previo al incentivo",
+    "section": "Datos y fuente",
+    "text": "Datos y fuente\nCSV 2010–2025 · Procesamiento R · INE: ocupación y desocupación."
+  },
+  {
+    "objectID": "02_salud_fonasa.html",
+    "href": "02_salud_fonasa.html",
+    "title": "Fonasa: evolución de beneficiarios",
+    "section": "",
+    "text": "¿Cómo cambió el volumen de beneficiarios de Fonasa? Se conserva el pilar de salud iniciado en Gemini, con un alcance ajustado a lo que efectivamente contienen los archivos.\n\n\n\n\n\n\nResultado calculado\n\n\n\nLos conteos de los archivos pasan de 15.233.814 en diciembre de 2021 a 17.132.611 en diciembre de 2025, una variación de 12,5%."
+  },
+  {
+    "objectID": "02_salud_fonasa.html#la-pregunta",
+    "href": "02_salud_fonasa.html#la-pregunta",
+    "title": "Fonasa: evolución de beneficiarios",
+    "section": "",
+    "text": "¿Cómo cambió el volumen de beneficiarios de Fonasa? Se conserva el pilar de salud iniciado en Gemini, con un alcance ajustado a lo que efectivamente contienen los archivos.\n\n\n\n\n\n\nResultado calculado\n\n\n\nLos conteos de los archivos pasan de 15.233.814 en diciembre de 2021 a 17.132.611 en diciembre de 2025, una variación de 12,5%."
+  },
+  {
+    "objectID": "02_salud_fonasa.html#evolución-del-total",
+    "href": "02_salud_fonasa.html#evolución-del-total",
+    "title": "Fonasa: evolución de beneficiarios",
+    "section": "Evolución del total",
+    "text": "Evolución del total\n\n\nCódigo\nlineas(t,'beneficiarios',unidad='Beneficiarios registrados')\n\n\n\n\n\nFuente: archivos Fonasa aportados al proyecto; suma de conteos por categorías."
+  },
+  {
+    "objectID": "02_salud_fonasa.html#composición-por-tramo",
+    "href": "02_salud_fonasa.html#composición-por-tramo",
+    "title": "Fonasa: evolución de beneficiarios",
+    "section": "Composición por tramo",
+    "text": "Composición por tramo\n\n\nCódigo\nggplot(f,aes(factor(anio),beneficiarios,fill=tramo))+geom_col(width=.65)+scale_fill_manual(values=paleta)+scale_y_continuous(labels=label_number(big.mark='.',decimal.mark=','))+labs(x=NULL,y='Beneficiarios',fill='Tramo')\n\n\n\n\n\nTramos administrativos de Fonasa. Las barras muestran cantidades, no flujos entre tramos."
+  },
+  {
+    "objectID": "02_salud_fonasa.html#lectura-y-limitaciones",
+    "href": "02_salud_fonasa.html#lectura-y-limitaciones",
+    "title": "Fonasa: evolución de beneficiarios",
+    "section": "Lectura y limitaciones",
+    "text": "Lectura y limitaciones\nEl aumento describe un mayor volumen de cobertura registrado. No demuestra migración desde Isapres, mayor uso de prestaciones ni insuficiencia presupuestaria. Para medir cambios individuales se necesita un registro longitudinal compatible o estadísticas oficiales de altas y bajas por origen.\n\nLos CSV tienen conteos agregados por categorías; las filas no representan personas individuales. No incluyen una renta imponible individual para desarrollar el análisis propuesto inicialmente.\nLas claves repetidas detectadas en 2018–2020 requieren aclaración documental. Esos años se conservan y auditan, pero se excluyen de los gráficos, sin eliminar registros de los originales.\nSe homologaron los nombres de tramo y conteo para 2021–2025. No se detectaron claves repetidas ni conteos faltantes o negativos en esos cinco archivos. Esto es una validación interna, no una certificación externa de cobertura.\nNo se restan los stocks de Fonasa e Isapres para estimar flujos. El libro de Isapres permanece disponible en la carpeta original para una futura conciliación.\nEsta sección es contexto del proyecto previo, no una evaluación sanitaria ni causal del plan de 2026."
+  },
+  {
+    "objectID": "02_salud_fonasa.html#datos-y-trazabilidad",
+    "href": "02_salud_fonasa.html#datos-y-trazabilidad",
+    "title": "Fonasa: evolución de beneficiarios",
+    "section": "Datos y trazabilidad",
+    "text": "Datos y trazabilidad\nCSV por tramo · Auditoría de los ocho archivos · Procesamiento R · Portal de datos abiertos de Fonasa.\nLos originales fueron aportados por el autor. Falta conciliar cada edición con su descarga institucional exacta; los totales se presentan como sumas de esos archivos. El diccionario disponible no coincide plenamente con sus columnas."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Política para no políticos",
+    "title": "El Plan de Reconstrucción Nacional, bajo la lupa",
     "section": "",
-    "text": "Bienvenido a Política para no políticos, un laboratorio de datos donde analizamos las reformas, el gasto público y las transformaciones del Estado chileno utilizando bases de datos oficiales."
+    "text": "¿Qué respaldan los datos y qué sigue sin demostrarse? Este proyecto de ciencia política reúne series oficiales, las procesa en R y explica sus alcances. La evidencia descriptiva permite examinar problemas; evaluar si una medida concreta los resuelve exige más información."
   },
   {
-    "objectID": "index.html#quarto",
-    "href": "index.html#quarto",
-    "title": "Política para no políticos",
-    "section": "Quarto",
-    "text": "Quarto\nQuarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+    "objectID": "index.html#explorar-los-análisis",
+    "href": "index.html#explorar-los-análisis",
+    "title": "El Plan de Reconstrucción Nacional, bajo la lupa",
+    "section": "Explorar los análisis",
+    "text": "Explorar los análisis\n\n\nTributación\nRecaudación, renta e IVA como porcentaje del PIB. ¿Qué sabemos antes de discutir una rebaja?\n\n\nEmpleo\nOcupación y desocupación. El diagnóstico previo a los incentivos al empleo formal.\n\n\nFinanzas públicas\nIngresos, gastos y balance del Gobierno Central. Los márgenes del debate fiscal.\n\n\nVivienda\nDéficit habitacional del Censo 2024 por región: magnitud y distribución territorial.\n\n\nInversión\nFormación bruta de capital fijo. Una referencia para examinar la reactivación.\n\n\nCapacidad estatal y salud\nContinuidad del trabajo original sobre empleo público y beneficiarios de Fonasa."
   },
   {
-    "objectID": "index.html#running-code",
-    "href": "index.html#running-code",
-    "title": "Política para no políticos",
-    "section": "Running Code",
-    "text": "Running Code\nWhen you click the Render button a document will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2\n\n\nYou can add options to executable code like this\n\n\n[1] 4\n\n\nThe echo: false option disables the printing of code (only output is displayed)."
+    "objectID": "index.html#qué-versión-del-plan-se-analiza",
+    "href": "index.html#qué-versión-del-plan-se-analiza",
+    "title": "El Plan de Reconstrucción Nacional, bajo la lupa",
+    "section": "Qué versión del plan se analiza",
+    "text": "Qué versión del plan se analiza\nEl alcance de esta edición son los anuncios oficiales de marzo y abril de 2026. La presentación de marzo organiza el plan en cinco ejes y anuncia más de 40 medidas. La comunicación de abril detalla propuestas tributarias, laborales, de vivienda e inversión. Este sitio no certifica su vigencia legal ni incorpora automáticamente modificaciones posteriores.\nFuentes del alcance: Ministerio del Interior, 14 de marzo de 2026 y Segegob, 23 de abril de 2026."
+  },
+  {
+    "objectID": "index.html#cuánto-está-abordado",
+    "href": "index.html#cuánto-está-abordado",
+    "title": "El Plan de Reconstrucción Nacional, bajo la lupa",
+    "section": "Cuánto está abordado",
+    "text": "Cuánto está abordado\nHay cinco nuevas secciones de diagnóstico, además de empleo público y salud: siete secciones temáticas con gráficos. Esto no equivale a siete medidas evaluadas ni permite restar siete al total anunciado. Una misma sección aporta contexto para varias propuestas.\n\n\n\n\n\n\n\n\nPropuesta o eje anunciado\nEvidencia incorporada\nQué falta para evaluarlo\n\n\n\n\nRebaja del impuesto corporativo\nRecaudación agregada del SII\nBase gravada, incidencia distributiva y costo fiscal de la medida\n\n\nIncentivo al empleo formal\nMercado laboral anual del INE\nContrataciones elegibles, informalidad desagregada y efecto adicional del incentivo\n\n\nIVA temporal para viviendas nuevas\nDéficit habitacional regional\nVentas, precios, stock disponible y traslado del beneficio al comprador\n\n\nReconstrucción habitacional\nContexto habitacional previo\nCatastro de damnificados, costos y avance de obras de reconstrucción\n\n\nContribuciones de primera vivienda para mayores de 65\nSin base específica incorporada\nPropiedades, avalúos, edad de propietarios y compensación municipal\n\n\nIncentivos y estabilidad para inversión\nInversión agregada del Banco Central\nProyectos elegibles y comparación causal\n\n\nAgilización de permisos\nContexto agregado de inversión\nDuraciones, expedientes y resultados de permisos\n\n\nOrden fiscal\nIngresos, gastos y balance DIPRES\nInforme financiero del articulado y efectos sobre servicios\n\n\nSeguridad e institucionalidad\nPendiente de análisis específico\nTexto preciso de las medidas e indicadores pertinentes\n\n\n\nPendiente transversal: construir un inventario exhaustivo del articulado y sus modificaciones para contar medidas terminadas y pendientes sin ambigüedad. Salud se conserva como contexto del proyecto original; no se presenta como una medida sanitaria comprobada de este plan."
+  },
+  {
+    "objectID": "index.html#cómo-leer-la-evidencia",
+    "href": "index.html#cómo-leer-la-evidencia",
+    "title": "El Plan de Reconstrucción Nacional, bajo la lupa",
+    "section": "Cómo leer la evidencia",
+    "text": "Cómo leer la evidencia\nLas cifras llegan hasta 2025, salvo vivienda (Censo 2024). Son antecedentes previos al plan. Cada página distingue el resultado calculado, su lectura y lo que no permite concluir. Los archivos depurados se descargan y los gráficos muestran su código R.\nRevisar metodología, fuentes y decisiones del proyecto."
   },
   {
     "objectID": "01_empleo_publico.html",
     "href": "01_empleo_publico.html",
-    "title": "Análisis del Empleo Público en Chile (2021-2025)",
+    "title": "Empleo público y capacidad estatal",
     "section": "",
-    "text": "El contexto del debate\nEl siguiente análisis procesa directamente la base de datos descargada de la Dirección de Presupuestos (DIPRES) para auditar la evolución de la plantilla del Estado sin intermediarios.\n\n\n\n\n\n\nHallazgo Clave\n\n\n\nEl crecimiento del aparato estatal entre 2021 y 2025 no ha sido homogéneo. La Administración Central explica la mayor parte de la expansión de cargos, influenciada por la creación de nuevas instituciones públicas y el refuerzo de dotaciones en sectores críticos.\n\n\n\n\n\n\n\n\nNota de Metodología\n\n\n\nLos datos consideran la dotación disponible informada en los informes trimestrales de la Dirección de Presupuestos (DIPRES), excluyendo personal a honorarios directos.\n\n\n\n\n\n\n\n\n📈 Variación Porcentual Año a Año por Dependencia\n\n\n\n\n\nDependencia\n2021\n2022\n2023\n2024\n2025\n\n\n\n\nAdministración Central\n-\n-0.71%\n+1.10%\n+6.92%\n+10.90%\n\n\nEmpresas Públicas\n-\n+3.27%\n+0.10%\n+0.45%\n-1.98%\n\n\nMunicipalidades\n-\n+5.58%\n+2.34%\n-2.08%\n-2.12%\n\n\nOrganismos Autónomos\n-\n-0.91%\n+2.08%\n-0.24%\n+0.42%\n\n\nOtras Instituciones Públicas\n-\n+9.95%\n-4.40%\n-4.86%\n+3.01%\n\n\nUniversidades y CFT Estatales\n-\n+1.15%\n+6.81%\n+4.22%\n+1.56%\n\n\n\n\n\n\n\n⚖️ Comparación Periodo Completo (2021 vs 2025)\n\n\n\n\n\n\n\n\n\n\n\n\nDependencia\n2021\n2025\nAumento Absoluto\nCrecimiento Total (%)\n\n\n\n\nAdministración Central\n428.600\n510.160\n81.560\n+19.03%\n\n\nMunicipalidades\n435.432\n450.947\n15.515\n+3.56%"
+    "text": "¿Dónde creció el personal disponible del sector público antes del plan? Es un antecedente para discutir reorganización y gasto, pero el número de cargos no mide por sí solo eficiencia ni calidad de los servicios.\n\n\n\n\n\n\nResultado calculado\n\n\n\nEl total pasó de 987.453 a 1.093.050 cargos: un aumento de 10,7%. La Administración Central concentra el mayor incremento absoluto entre las dependencias de esta tabla."
   },
   {
-    "objectID": "index.html#un-análisis-detallado-con-datos-de-la-dirección-de-presupuestos-dipres-para-auditar-la-evolución-de-los-cargos-en-la-administración-central-municipalidades-y-otros-organismos-estatales.",
-    "href": "index.html#un-análisis-detallado-con-datos-de-la-dirección-de-presupuestos-dipres-para-auditar-la-evolución-de-los-cargos-en-la-administración-central-municipalidades-y-otros-organismos-estatales.",
-    "title": "Política para no políticos",
-    "section": "Un análisis detallado con datos de la Dirección de Presupuestos (DIPRES) para auditar la evolución de los cargos en la Administración Central, Municipalidades y otros organismos estatales.",
-    "text": "Un análisis detallado con datos de la Dirección de Presupuestos (DIPRES) para auditar la evolución de los cargos en la Administración Central, Municipalidades y otros organismos estatales."
+    "objectID": "01_empleo_publico.html#la-pregunta",
+    "href": "01_empleo_publico.html#la-pregunta",
+    "title": "Empleo público y capacidad estatal",
+    "section": "",
+    "text": "¿Dónde creció el personal disponible del sector público antes del plan? Es un antecedente para discutir reorganización y gasto, pero el número de cargos no mide por sí solo eficiencia ni calidad de los servicios.\n\n\n\n\n\n\nResultado calculado\n\n\n\nEl total pasó de 987.453 a 1.093.050 cargos: un aumento de 10,7%. La Administración Central concentra el mayor incremento absoluto entre las dependencias de esta tabla."
+  },
+  {
+    "objectID": "01_empleo_publico.html#evolución-de-las-principales-dependencias",
+    "href": "01_empleo_publico.html#evolución-de-las-principales-dependencias",
+    "title": "Empleo público y capacidad estatal",
+    "section": "Evolución de las principales dependencias",
+    "text": "Evolución de las principales dependencias\n\n\nCódigo\nlineas(filter(e,dependencia%in%c('Administración Central','Municipalidades')),'cargos','dependencia','Cargos (promedio anual)')\n\n\n\n\n\nFuente: DIPRES, archivo aportado al proyecto, hoja General. Promedio anual de cargos.\n\n\n\n\n\n\nCódigo\ntabla(comp |&gt; transmute(Dependencia=dependencia,`2021`=a2021,`2025`=a2025,`Cambio en cargos`=cambio,`Variación (%)`=variacion))\n\n\n\nCambio por dependencia, 2021–2025 \n\n\nDependencia\n2021\n2025\nCambio en cargos\nVariación (%)\n\n\n\n\nAdministración Central\n428.600\n510.160\n81.560\n19,03\n\n\nOrganismos Autónomos\n25.227\n25.565\n338\n1,34\n\n\nMunicipalidades\n435.432\n450.947\n15.515\n3,56\n\n\nUniversidades y CFT Estatales\n51.080\n58.417\n7.337\n14,36\n\n\nEmpresas Públicas\n46.350\n47.174\n824\n1,78\n\n\nOtras Instituciones Públicas\n764\n787\n23\n3,01"
+  },
+  {
+    "objectID": "01_empleo_publico.html#lectura-y-limitaciones",
+    "href": "01_empleo_publico.html#lectura-y-limitaciones",
+    "title": "Empleo público y capacidad estatal",
+    "section": "Lectura y limitaciones",
+    "text": "Lectura y limitaciones\nEl crecimiento desigual orienta dónde profundizar. No permite afirmar que existan cargos prescindibles ni explicar el cambio por nuevas instituciones sin desagregar servicios y funciones. Los traspasos entre dependencias también deben examinarse antes de interpretar aumentos como contrataciones nuevas.\n\nUnidad: promedio anual de cargos, no personas únicas ni fotografía al 31 de diciembre. Una persona puede desempeñar más de un cargo.\nCobertura: el archivo contiene exclusiones y reglas institucionales; no es un censo irrestricto de todo trabajador financiado por el Estado. Las notas excluyen senadores y diputados y aplican cobertura acotada a Fuerzas Armadas y de Orden.\nComparabilidad: las ediciones pueden revisar cifras y metodología. Esta página usa una sola edición y verifica que las dependencias sumen el total de cada año.\nPara evaluar recortes: faltan remuneraciones, funciones, demanda de atención, productividad y consecuencias sobre los servicios. No se calculan ahorros a partir del número de cargos."
+  },
+  {
+    "objectID": "01_empleo_publico.html#datos-y-fuente",
+    "href": "01_empleo_publico.html#datos-y-fuente",
+    "title": "Empleo público y capacidad estatal",
+    "section": "Datos y fuente",
+    "text": "Datos y fuente\nDescargar CSV · Procesamiento R · Cuadros de empleo público DIPRES.\nSe conserva la base que ya estaba en el proyecto. Su fecha original de descarga no quedó registrada; el inventario documenta la copia utilizada ahora."
+  },
+  {
+    "objectID": "03_tributacion.html",
+    "href": "03_tributacion.html",
+    "title": "Tributación: la base del debate",
+    "section": "",
+    "text": "¿Cuál era la recaudación antes de las propuestas de rebaja tributaria? El anuncio de abril plantea reducir la tasa corporativa de 27% a 23%. La recaudación agregada contextualiza la discusión, pero no calcula el efecto de cambiar esa tasa. Fuente del anuncio.\n\n\n\n\n\n\nResultado calculado\n\n\n\nEn 2025, el total de ingresos tributarios de esta tabla equivale a 17,84% del PIB. Renta representa 7,49% e IVA 8,40%. Son cifras preliminares."
+  },
+  {
+    "objectID": "03_tributacion.html#la-pregunta",
+    "href": "03_tributacion.html#la-pregunta",
+    "title": "Tributación: la base del debate",
+    "section": "",
+    "text": "¿Cuál era la recaudación antes de las propuestas de rebaja tributaria? El anuncio de abril plantea reducir la tasa corporativa de 27% a 23%. La recaudación agregada contextualiza la discusión, pero no calcula el efecto de cambiar esa tasa. Fuente del anuncio.\n\n\n\n\n\n\nResultado calculado\n\n\n\nEn 2025, el total de ingresos tributarios de esta tabla equivale a 17,84% del PIB. Renta representa 7,49% e IVA 8,40%. Son cifras preliminares."
+  },
+  {
+    "objectID": "03_tributacion.html#recaudación-y-composición",
+    "href": "03_tributacion.html#recaudación-y-composición",
+    "title": "Tributación: la base del debate",
+    "section": "Recaudación y composición",
+    "text": "Recaudación y composición\n\n\nCódigo\ng &lt;- d |&gt; select(anio,Total=total,Renta=renta,IVA=iva) |&gt; pivot_longer(-anio,names_to='tipo',values_to='pct')\nlineas(g,'pct','tipo','Porcentaje del PIB')\n\n\n\n\n\nFuente: SII, serie 2009–2025, hoja Consolidados. 2024 provisional; 2025 preliminar."
+  },
+  {
+    "objectID": "03_tributacion.html#lectura-y-limitaciones",
+    "href": "03_tributacion.html#lectura-y-limitaciones",
+    "title": "Tributación: la base del debate",
+    "section": "Lectura y limitaciones",
+    "text": "Lectura y limitaciones\nLa serie varía entre años: una recaudación mayor no prueba una tasa legal mayor y una caída no identifica su causa. Cambian las bases tributarias, la actividad, las devoluciones y el PIB usado como denominador.\n\nRenta no es solo impuesto corporativo. No se multiplica toda la recaudación de renta por la reducción propuesta: eso produciría un costo fiscal engañoso.\nSe usa la fila TOTAL INGRESOS TRIBUTARIOS, que el libro distingue de INGRESOS TRIBUTARIOS NETOS, ajustada además por cuentas no tributarias. No se mezclan las dos filas.\nLos valores originales están almacenados como fracción del PIB; el código los multiplica por 100. IVA corresponde al agregado de la tabla, no a la fila de IVA bruto.\nNo hay distribución del beneficio por hogar o empresa ni estimación causal sobre empleo o inversión.\n\nPara evaluar la medida: incorporar el informe financiero, base gravada y regímenes afectados; luego comparar escenarios explícitos, con sensibilidad de la respuesta de inversión y recaudación."
+  },
+  {
+    "objectID": "03_tributacion.html#datos-y-fuente",
+    "href": "03_tributacion.html#datos-y-fuente",
+    "title": "Tributación: la base del debate",
+    "section": "Datos y fuente",
+    "text": "Datos y fuente\nDescargar CSV 2009–2025 · Procesamiento R · Serie de ingresos tributarios del SII."
+  },
+  {
+    "objectID": "05_finanzas_publicas.html",
+    "href": "05_finanzas_publicas.html",
+    "title": "Finanzas públicas: ingresos, gastos y balance",
+    "section": "",
+    "text": "¿Con qué situación fiscal llega el Gobierno Central al debate sobre reconstrucción, impuestos y gasto? El orden fiscal forma parte del anuncio de marzo. Fuente del alcance.\n\n\n\n\n\n\nResultado calculado\n\n\n\nEn 2025, los ingresos totales equivalen a 21,59% del PIB, los gastos totales a 24,40% y el balance a -2,80%. Un balance negativo indica déficit en esta medición."
+  },
+  {
+    "objectID": "05_finanzas_publicas.html#la-pregunta",
+    "href": "05_finanzas_publicas.html#la-pregunta",
+    "title": "Finanzas públicas: ingresos, gastos y balance",
+    "section": "",
+    "text": "¿Con qué situación fiscal llega el Gobierno Central al debate sobre reconstrucción, impuestos y gasto? El orden fiscal forma parte del anuncio de marzo. Fuente del alcance.\n\n\n\n\n\n\nResultado calculado\n\n\n\nEn 2025, los ingresos totales equivalen a 21,59% del PIB, los gastos totales a 24,40% y el balance a -2,80%. Un balance negativo indica déficit en esta medición."
+  },
+  {
+    "objectID": "05_finanzas_publicas.html#ingresos-y-gastos",
+    "href": "05_finanzas_publicas.html#ingresos-y-gastos",
+    "title": "Finanzas públicas: ingresos, gastos y balance",
+    "section": "Ingresos y gastos",
+    "text": "Ingresos y gastos\n\n\nCódigo\ng&lt;-d |&gt; select(anio,Ingresos=ingresos_pct_pib,Gastos=gastos_pct_pib) |&gt; pivot_longer(-anio,names_to='serie',values_to='pct')\nlineas(g,'pct','serie','Porcentaje del PIB')\n\n\n\n\n\nFuente: DIPRES, Estado de Operaciones del Gobierno Central Total 1990–2025."
+  },
+  {
+    "objectID": "05_finanzas_publicas.html#balance-efectivo",
+    "href": "05_finanzas_publicas.html#balance-efectivo",
+    "title": "Finanzas públicas: ingresos, gastos y balance",
+    "section": "Balance efectivo",
+    "text": "Balance efectivo\n\n\nCódigo\nggplot(d,aes(factor(anio),balance_pct_pib))+geom_col(fill=paleta[1],width=.65)+geom_hline(yintercept=0,colour='#4b5563')+scale_y_continuous(labels=label_number(decimal.mark=','))+labs(x=NULL,y='Balance (% del PIB)')\n\n\n\n\n\nPréstamo neto / endeudamiento neto. Se verifica en R la identidad ingresos menos gastos."
+  },
+  {
+    "objectID": "05_finanzas_publicas.html#lectura-y-limitaciones",
+    "href": "05_finanzas_publicas.html#lectura-y-limitaciones",
+    "title": "Finanzas públicas: ingresos, gastos y balance",
+    "section": "Lectura y limitaciones",
+    "text": "Lectura y limitaciones\nEl balance identifica una restricción presupuestaria relevante para discutir nuevas obligaciones o menores ingresos. Por sí solo no determina qué gasto recortar ni prueba que una rebaja tributaria se autofinancie.\n\nSe usan TOTAL INGRESOS, TOTAL GASTOS y PRÉSTAMO NETO/ENDEUDAMIENTO NETO del mismo cuadro. Los totales incluyen operaciones de capital; no se confunden con las filas de ingresos y gastos corrientes.\nEs Gobierno Central Total, no Gobierno General ni todo el sector público. No se incluye automáticamente el presupuesto de municipios o empresas públicas.\nEl balance efectivo no es el estructural. Tampoco es un nivel de deuda ni una proyección para 2026.\nEl cociente cambia por su numerador y por el PIB; estos gráficos no descomponen esas causas ni cuantifican efectos de la pandemia.\n\nPara evaluar el plan: conciliar su informe financiero, calendario de implementación y fuentes de financiamiento, y medir efectos distributivos y sobre los servicios públicos."
+  },
+  {
+    "objectID": "05_finanzas_publicas.html#datos-y-fuente",
+    "href": "05_finanzas_publicas.html#datos-y-fuente",
+    "title": "Finanzas públicas: ingresos, gastos y balance",
+    "section": "Datos y fuente",
+    "text": "Datos y fuente\nCSV 1990–2025 · Procesamiento R · DIPRES: estado de operaciones anuales."
+  },
+  {
+    "objectID": "07_inversion.html",
+    "href": "07_inversion.html",
+    "title": "Inversión: una referencia para la reactivación",
+    "section": "",
+    "text": "¿Qué proporción del PIB representa la inversión en activos fijos antes del plan? El anuncio de abril contempla estabilidad tributaria para proyectos de inversión. Esta serie ofrece contexto macroeconómico, no una estimación del efecto de ese incentivo. Fuente del anuncio.\n\n\n\n\n\n\nResultado calculado\n\n\n\nEn 2025, la formación bruta de capital fijo equivale a 24,1% del PIB, frente a 23,7% en 2024. La diferencia es en puntos porcentuales del PIB, no una tasa de crecimiento real de la inversión."
+  },
+  {
+    "objectID": "07_inversion.html#la-pregunta",
+    "href": "07_inversion.html#la-pregunta",
+    "title": "Inversión: una referencia para la reactivación",
+    "section": "",
+    "text": "¿Qué proporción del PIB representa la inversión en activos fijos antes del plan? El anuncio de abril contempla estabilidad tributaria para proyectos de inversión. Esta serie ofrece contexto macroeconómico, no una estimación del efecto de ese incentivo. Fuente del anuncio.\n\n\n\n\n\n\nResultado calculado\n\n\n\nEn 2025, la formación bruta de capital fijo equivale a 24,1% del PIB, frente a 23,7% en 2024. La diferencia es en puntos porcentuales del PIB, no una tasa de crecimiento real de la inversión."
+  },
+  {
+    "objectID": "07_inversion.html#formación-bruta-de-capital-fijo-pib",
+    "href": "07_inversion.html#formación-bruta-de-capital-fijo-pib",
+    "title": "Inversión: una referencia para la reactivación",
+    "section": "Formación bruta de capital fijo / PIB",
+    "text": "Formación bruta de capital fijo / PIB\n\n\nCódigo\nlineas(d,'fbcf_pct_pib',unidad='FBCF / PIB (%)')\n\n\n\n\n\nFuente: Banco Central, agregados de inversión en relación al PIB, referencia 2018. Precios corrientes."
+  },
+  {
+    "objectID": "07_inversion.html#lectura-y-limitaciones",
+    "href": "07_inversion.html#lectura-y-limitaciones",
+    "title": "Inversión: una referencia para la reactivación",
+    "section": "Lectura y limitaciones",
+    "text": "Lectura y limitaciones\nEl indicador relaciona la adquisición de activos fijos con el tamaño de la economía. Una variación puede deberse a cambios de inversión, del PIB o de precios relativos; no identifica obstáculos regulatorios por sí sola.\n\nSe usa la serie a precios corrientes y se evita mezclarla con la relación a precios del año anterior encadenados que también aparece en la tabla.\nNo es inversión extranjera directa ni ejecución presupuestaria. Es un agregado de la economía y no separa los proyectos alcanzados por el plan.\nEl HTML oficial guarda valores con un decimal. Se respeta esa precisión y no se presenta exactitud adicional ficticia.\nLas cuentas nacionales están sujetas a revisiones. La descarga preserva la versión usada; no se atribuyen movimientos hasta 2025 a una propuesta de 2026.\n\nPara evaluar los incentivos: se necesitan expedientes y montos de proyectos, plazos de permisos, elegibilidad, costo tributario y una estrategia de comparación que separe el efecto del plan del ciclo económico."
+  },
+  {
+    "objectID": "07_inversion.html#datos-y-fuente",
+    "href": "07_inversion.html#datos-y-fuente",
+    "title": "Inversión: una referencia para la reactivación",
+    "section": "Datos y fuente",
+    "text": "Datos y fuente\nCSV 2013–2025 · Procesamiento R · Tabla del Banco Central."
   }
 ]

@@ -1,35 +1,73 @@
 ---
-title: "Política para no políticos"
-subtitle: "Auditoría de datos y evidencia sobre el Estado chileno, sin sesgos ni intermediarios"
+title: "El Plan de Reconstrucción Nacional, bajo la lupa"
+subtitle: "Evidencia institucional para entender el diagnóstico y discutir las propuestas de 2026."
 ---
 
-Bienvenido a **Política para no políticos**, un laboratorio de datos donde analizamos las reformas, el gasto público y las transformaciones del Estado chileno utilizando bases de datos oficiales.
-
-------------------------------------------------------------------------
-
-### 📊 Análisis disponibles
-
-#### 1. [¿Dónde creció el empleo público en Chile? (2021-2025)](01_empleo_publico.html)
-
-## Un análisis detallado con datos de la Dirección de Presupuestos (DIPRES) para auditar la evolución de los cargos en la Administración Central, Municipalidades y otros organismos estatales.
-
-## Quarto
-
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
-
 ```{r}
-1 + 1
+#| include: false
+source("scripts/graficos.R", encoding="UTF-8")
 ```
 
-You can add options to executable code like this
 
-```{r}
-#| echo: false
-2 * 2
-```
+::: {.hero}
+**¿Qué respaldan los datos y qué sigue sin demostrarse?** Este proyecto de ciencia política reúne series oficiales, las procesa en R y explica sus alcances. La evidencia descriptiva permite examinar problemas; evaluar si una medida concreta los resuelve exige más información.
+:::
 
-The `echo: false` option disables the printing of code (only output is displayed).
+## Explorar los análisis
+
+::: {.cards}
+::: {.card-tema}
+### [Tributación](03_tributacion.qmd)
+Recaudación, renta e IVA como porcentaje del PIB. ¿Qué sabemos antes de discutir una rebaja?
+:::
+::: {.card-tema}
+### [Empleo](04_empleo_formal.qmd)
+Ocupación y desocupación. El diagnóstico previo a los incentivos al empleo formal.
+:::
+::: {.card-tema}
+### [Finanzas públicas](05_finanzas_publicas.qmd)
+Ingresos, gastos y balance del Gobierno Central. Los márgenes del debate fiscal.
+:::
+::: {.card-tema}
+### [Vivienda](06_vivienda.qmd)
+Déficit habitacional del Censo 2024 por región: magnitud y distribución territorial.
+:::
+::: {.card-tema}
+### [Inversión](07_inversion.qmd)
+Formación bruta de capital fijo. Una referencia para examinar la reactivación.
+:::
+::: {.card-tema}
+### [Capacidad estatal](01_empleo_publico.qmd) y [salud](02_salud_fonasa.qmd)
+Continuidad del trabajo original sobre empleo público y beneficiarios de Fonasa.
+:::
+:::
+
+## Qué versión del plan se analiza
+
+El alcance de esta edición son los anuncios oficiales de **marzo y abril de 2026**. La presentación de marzo organiza el plan en cinco ejes y anuncia más de 40 medidas. La comunicación de abril detalla propuestas tributarias, laborales, de vivienda e inversión. Este sitio no certifica su vigencia legal ni incorpora automáticamente modificaciones posteriores.
+
+Fuentes del alcance: [Ministerio del Interior, 14 de marzo de 2026](https://www.interior.gob.cl/noticias/2026/03/14/presidente-jose-antonio-kast-presenta-proyecto-de-ley-de-reconstruccion-nacional-junto-a-ministro-alvarado/) y [Segegob, 23 de abril de 2026](https://msgg.gob.cl/wp/2026/04/23/presidente-kast-firma-proyecto-de-ley-del-plan-de-reconstruccion-nacional-y-desarrollo-economico-y-social/).
+
+## Cuánto está abordado
+
+Hay **cinco nuevas secciones de diagnóstico**, además de empleo público y salud: **siete secciones temáticas con gráficos**. Esto no equivale a siete medidas evaluadas ni permite restar siete al total anunciado. Una misma sección aporta contexto para varias propuestas.
+
+| Propuesta o eje anunciado | Evidencia incorporada | Qué falta para evaluarlo |
+|---|---|---|
+| Rebaja del impuesto corporativo | Recaudación agregada del SII | Base gravada, incidencia distributiva y costo fiscal de la medida |
+| Incentivo al empleo formal | Mercado laboral anual del INE | Contrataciones elegibles, informalidad desagregada y efecto adicional del incentivo |
+| IVA temporal para viviendas nuevas | Déficit habitacional regional | Ventas, precios, stock disponible y traslado del beneficio al comprador |
+| Reconstrucción habitacional | Contexto habitacional previo | Catastro de damnificados, costos y avance de obras de reconstrucción |
+| Contribuciones de primera vivienda para mayores de 65 | Sin base específica incorporada | Propiedades, avalúos, edad de propietarios y compensación municipal |
+| Incentivos y estabilidad para inversión | Inversión agregada del Banco Central | Proyectos elegibles y comparación causal |
+| Agilización de permisos | Contexto agregado de inversión | Duraciones, expedientes y resultados de permisos |
+| Orden fiscal | Ingresos, gastos y balance DIPRES | Informe financiero del articulado y efectos sobre servicios |
+| Seguridad e institucionalidad | Pendiente de análisis específico | Texto preciso de las medidas e indicadores pertinentes |
+
+**Pendiente transversal:** construir un inventario exhaustivo del articulado y sus modificaciones para contar medidas terminadas y pendientes sin ambigüedad. Salud se conserva como contexto del proyecto original; no se presenta como una medida sanitaria comprobada de este plan.
+
+## Cómo leer la evidencia
+
+Las cifras llegan hasta **2025**, salvo vivienda (**Censo 2024**). Son antecedentes previos al plan. Cada página distingue el resultado calculado, su lectura y lo que no permite concluir. Los archivos depurados se descargan y los gráficos muestran su código R.
+
+[Revisar metodología, fuentes y decisiones del proyecto](metodologia.qmd).

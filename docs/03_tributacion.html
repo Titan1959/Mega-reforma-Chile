@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Política para no políticos - Empleo público y capacidad estatal</title>
+<title>Política para no políticos - Tributación: la base del debate</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -147,7 +147,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link active" href="./01_empleo_publico.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="./01_empleo_publico.html" rel="" target="">
  <span class="menu-text">Capacidad estatal</span></a>
   </li>  
   <li class="nav-item">
@@ -175,7 +175,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#la-pregunta" id="toc-la-pregunta" class="nav-link active" data-scroll-target="#la-pregunta">La pregunta</a></li>
-  <li><a href="#evolución-de-las-principales-dependencias" id="toc-evolución-de-las-principales-dependencias" class="nav-link" data-scroll-target="#evolución-de-las-principales-dependencias">Evolución de las principales dependencias</a></li>
+  <li><a href="#recaudación-y-composición" id="toc-recaudación-y-composición" class="nav-link" data-scroll-target="#recaudación-y-composición">Recaudación y composición</a></li>
   <li><a href="#lectura-y-limitaciones" id="toc-lectura-y-limitaciones" class="nav-link" data-scroll-target="#lectura-y-limitaciones">Lectura y limitaciones</a></li>
   <li><a href="#datos-y-fuente" id="toc-datos-y-fuente" class="nav-link" data-scroll-target="#datos-y-fuente">Datos y fuente</a></li>
   </ul>
@@ -186,8 +186,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Empleo público y capacidad estatal</h1>
-<p class="subtitle lead">DIPRES · Promedio anual de cargos · 2021–2025</p>
+<h1 class="title">Tributación: la base del debate</h1>
+<p class="subtitle lead">SII · Recaudación como porcentaje del PIB · 2018–2025</p>
 </div>
 
 
@@ -204,7 +204,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="la-pregunta" class="level2">
 <h2 class="anchored" data-anchor-id="la-pregunta">La pregunta</h2>
-<p>¿Dónde creció el personal disponible del sector público antes del plan? Es un antecedente para discutir reorganización y gasto, pero el número de cargos no mide por sí solo eficiencia ni calidad de los servicios.</p>
+<p>¿Cuál era la recaudación antes de las propuestas de rebaja tributaria? El anuncio de abril plantea reducir la tasa corporativa de 27% a 23%. La recaudación agregada contextualiza la discusión, pero no calcula el efecto de cambiar esa tasa. <a href="https://msgg.gob.cl/wp/2026/04/23/presidente-kast-firma-proyecto-de-ley-del-plan-de-reconstruccion-nacional-y-desarrollo-economico-y-social/">Fuente del anuncio</a>.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Resultado calculado">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -215,107 +215,42 @@ Resultado calculado
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>El total pasó de <strong>987.453</strong> a <strong>1.093.050</strong> cargos: un aumento de <strong>10,7%</strong>. La Administración Central concentra el mayor incremento absoluto entre las dependencias de esta tabla.</p>
+<p>En 2025, el total de ingresos tributarios de esta tabla equivale a <strong>17,84% del PIB</strong>. Renta representa <strong>7,49%</strong> e IVA <strong>8,40%</strong>. Son cifras preliminares.</p>
 </div>
 </div>
 </section>
-<section id="evolución-de-las-principales-dependencias" class="level2">
-<h2 class="anchored" data-anchor-id="evolución-de-las-principales-dependencias">Evolución de las principales dependencias</h2>
+<section id="recaudación-y-composición" class="level2">
+<h2 class="anchored" data-anchor-id="recaudación-y-composición">Recaudación y composición</h2>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lineas</span>(<span class="fu">filter</span>(e,dependencia<span class="sc">%in%</span><span class="fu">c</span>(<span class="st">'Administración Central'</span>,<span class="st">'Municipalidades'</span>)),<span class="st">'cargos'</span>,<span class="st">'dependencia'</span>,<span class="st">'Cargos (promedio anual)'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span> <span class="fu">select</span>(anio,<span class="at">Total=</span>total,<span class="at">Renta=</span>renta,<span class="at">IVA=</span>iva) <span class="sc">|&gt;</span> <span class="fu">pivot_longer</span>(<span class="sc">-</span>anio,<span class="at">names_to=</span><span class="st">'tipo'</span>,<span class="at">values_to=</span><span class="st">'pct'</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lineas</span>(g,<span class="st">'pct'</span>,<span class="st">'tipo'</span>,<span class="st">'Porcentaje del PIB'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01_empleo_publico_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" alt="Series 2021 a 2025 de cargos de la Administración Central y municipalidades; ambas crecen, con mayor incremento en la primera." width="1280"></p>
-<figcaption class="figure-caption">Fuente: DIPRES, archivo aportado al proyecto, hoja General. Promedio anual de cargos.</figcaption>
+<p><img src="03_tributacion_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" alt="Series de recaudación total, renta e IVA como porcentaje del PIB entre 2018 y 2025; el total alcanza un máximo del período en 2022." width="1280"></p>
+<figcaption class="figure-caption">Fuente: SII, serie 2009–2025, hoja Consolidados. 2024 provisional; 2025 preliminar.</figcaption>
 </figure>
 </div>
-</div>
-</div>
-<div class="cell">
-<details>
-<summary>Código</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tabla</span>(comp <span class="sc">|&gt;</span> <span class="fu">transmute</span>(<span class="at">Dependencia=</span>dependencia,<span class="st">`</span><span class="at">2021</span><span class="st">`</span><span class="ot">=</span>a2021,<span class="st">`</span><span class="at">2025</span><span class="st">`</span><span class="ot">=</span>a2025,<span class="st">`</span><span class="at">Cambio en cargos</span><span class="st">`</span><span class="ot">=</span>cambio,<span class="st">`</span><span class="at">Variación (%)</span><span class="st">`</span><span class="ot">=</span>variacion))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
-<caption>Cambio por dependencia, 2021–2025 </caption>
-<thead>
-<tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">Dependencia</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">2021</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">2025</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Cambio en cargos</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Variación (%)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Administración Central</td>
-<td style="text-align: right;">428.600</td>
-<td style="text-align: right;">510.160</td>
-<td style="text-align: right;">81.560</td>
-<td style="text-align: right;">19,03</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Organismos Autónomos</td>
-<td style="text-align: right;">25.227</td>
-<td style="text-align: right;">25.565</td>
-<td style="text-align: right;">338</td>
-<td style="text-align: right;">1,34</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Municipalidades</td>
-<td style="text-align: right;">435.432</td>
-<td style="text-align: right;">450.947</td>
-<td style="text-align: right;">15.515</td>
-<td style="text-align: right;">3,56</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Universidades y CFT Estatales</td>
-<td style="text-align: right;">51.080</td>
-<td style="text-align: right;">58.417</td>
-<td style="text-align: right;">7.337</td>
-<td style="text-align: right;">14,36</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Empresas Públicas</td>
-<td style="text-align: right;">46.350</td>
-<td style="text-align: right;">47.174</td>
-<td style="text-align: right;">824</td>
-<td style="text-align: right;">1,78</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Otras Instituciones Públicas</td>
-<td style="text-align: right;">764</td>
-<td style="text-align: right;">787</td>
-<td style="text-align: right;">23</td>
-<td style="text-align: right;">3,01</td>
-</tr>
-</tbody>
-</table>
-
-
 </div>
 </div>
 </section>
 <section id="lectura-y-limitaciones" class="level2">
 <h2 class="anchored" data-anchor-id="lectura-y-limitaciones">Lectura y limitaciones</h2>
-<p>El crecimiento desigual orienta dónde profundizar. No permite afirmar que existan cargos prescindibles ni explicar el cambio por nuevas instituciones sin desagregar servicios y funciones. Los traspasos entre dependencias también deben examinarse antes de interpretar aumentos como contrataciones nuevas.</p>
+<p>La serie varía entre años: una recaudación mayor no prueba una tasa legal mayor y una caída no identifica su causa. Cambian las bases tributarias, la actividad, las devoluciones y el PIB usado como denominador.</p>
 <ul>
-<li><strong>Unidad:</strong> promedio anual de cargos, no personas únicas ni fotografía al 31 de diciembre. Una persona puede desempeñar más de un cargo.</li>
-<li><strong>Cobertura:</strong> el archivo contiene exclusiones y reglas institucionales; no es un censo irrestricto de todo trabajador financiado por el Estado. Las notas excluyen senadores y diputados y aplican cobertura acotada a Fuerzas Armadas y de Orden.</li>
-<li><strong>Comparabilidad:</strong> las ediciones pueden revisar cifras y metodología. Esta página usa una sola edición y verifica que las dependencias sumen el total de cada año.</li>
-<li><strong>Para evaluar recortes:</strong> faltan remuneraciones, funciones, demanda de atención, productividad y consecuencias sobre los servicios. No se calculan ahorros a partir del número de cargos.</li>
+<li><strong>Renta no es solo impuesto corporativo.</strong> No se multiplica toda la recaudación de renta por la reducción propuesta: eso produciría un costo fiscal engañoso.</li>
+<li>Se usa la fila <strong>TOTAL INGRESOS TRIBUTARIOS</strong>, que el libro distingue de <strong>INGRESOS TRIBUTARIOS NETOS</strong>, ajustada además por cuentas no tributarias. No se mezclan las dos filas.</li>
+<li>Los valores originales están almacenados como fracción del PIB; el código los multiplica por 100. IVA corresponde al agregado de la tabla, no a la fila de IVA bruto.</li>
+<li>No hay distribución del beneficio por hogar o empresa ni estimación causal sobre empleo o inversión.</li>
 </ul>
+<p><strong>Para evaluar la medida:</strong> incorporar el informe financiero, base gravada y regímenes afectados; luego comparar escenarios explícitos, con sensibilidad de la respuesta de inversión y recaudación.</p>
 </section>
 <section id="datos-y-fuente" class="level2">
 <h2 class="anchored" data-anchor-id="datos-y-fuente">Datos y fuente</h2>
-<p><a href="datos/empleo_publico.csv">Descargar CSV</a> · <a href="scripts/procesar_datos.R">Procesamiento R</a> · <a href="https://www.dipres.gob.cl/598/w3-article-190248.html">Cuadros de empleo público DIPRES</a>.</p>
-<p>Se conserva la base que ya estaba en el proyecto. Su fecha original de descarga no quedó registrada; el inventario documenta la copia utilizada ahora.</p>
+<p><a href="datos/tributacion.csv">Descargar CSV 2009–2025</a> · <a href="scripts/procesar_datos.R">Procesamiento R</a> · <a href="https://www.sii.cl/sobre_el_sii/serie_de_ingresos_tributarios.html">Serie de ingresos tributarios del SII</a>.</p>
 
 
 </section>

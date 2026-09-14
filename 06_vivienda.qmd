@@ -1,0 +1,58 @@
+---
+title: "Vivienda: magnitud y distribución del déficit"
+subtitle: "MINVU · Censo 2024 · Metodología completa"
+---
+
+```{r}
+#| include: false
+source("scripts/graficos.R", encoding="UTF-8")
+```
+
+
+## La pregunta
+
+¿Dónde se concentra la necesidad de nuevas viviendas? El plan anunciado incluye reconstrucción y un tratamiento temporal del IVA a viviendas nuevas. El déficit sirve de contexto, pero no identifica compradores elegibles ni damnificados. [Fuente del anuncio](https://msgg.gob.cl/wp/2026/04/23/presidente-kast-firma-proyecto-de-ley-del-plan-de-reconstruccion-nacional-y-desarrollo-economico-y-social/).
+
+```{r}
+#| include: false
+d<-leer('vivienda_regiones');total<-sum(d$deficit)
+```
+
+::: {.callout-note title="Resultado calculado y conciliado"}
+Las 16 regiones suman **`r n(total)` requerimientos de nuevas viviendas**, coincidiendo con el total nacional de la tabla MINVU. La Región Metropolitana concentra **`r n(100*d$deficit[d$region=='Metropolitana']/total,1)`%** de ese total.
+:::
+
+## Déficit por región
+
+```{r}
+#| fig-height: 6.6
+#| fig-alt: "Déficit habitacional cuantitativo en las 16 regiones. La Región Metropolitana registra la mayor cantidad absoluta."
+#| fig-cap: "Fuente: MINVU, Censos 2024 y 2002, hoja de metodología completa; columna 2024."
+ggplot(d,aes(deficit,reorder(region,deficit)))+geom_col(fill=paleta[1],width=.7)+scale_x_continuous(labels=label_number(big.mark='.',decimal.mark=','))+labs(x='Requerimientos de nuevas viviendas',y=NULL)
+```
+
+## Comparación respecto del número de hogares
+
+```{r}
+#| fig-height: 6.6
+#| fig-alt: "Déficit por cada cien hogares, por región; se usa un denominador regional para distinguir necesidad relativa y magnitud absoluta."
+#| fig-cap: "Cálculo propio: 100 × déficit cuantitativo / hogares, dentro de la misma tabla y año."
+ggplot(d,aes(deficit_por_100_hogares,reorder(region,deficit_por_100_hogares)))+geom_col(fill=paleta[2],width=.7)+scale_x_continuous(labels=label_number(decimal.mark=','))+labs(x='Requerimientos por cada 100 hogares',y=NULL)
+```
+
+## Lectura y limitaciones
+
+El volumen absoluto y el indicador relativo responden preguntas diferentes: dónde se requieren más viviendas y dónde esa necesidad es mayor respecto del número de hogares. No se debe interpretar este segundo indicador como la probabilidad individual de carecer de vivienda.
+
+- Se usa la **metodología completa**. El archivo ofrece otra versión abreviada para comparar con 2017; mezclar ambas produciría una comparación incorrecta.
+- La tabla informa una corrección de diciembre de 2025. La suma regional fue conciliada con el total de 491.904 de esta edición.
+- Es un diagnóstico del Censo 2024, no un catastro de viviendas destruidas por los incendios de 2026, de familias beneficiarias ni de obras pendientes del plan.
+- El déficit no mide precios de viviendas nuevas ni capacidad de pago. No permite estimar cuánto de una reducción del IVA llegará al comprador.
+
+**Para evaluar las medidas:** agregar catastros de reconstrucción y avance físico, costos por solución, stock y precios de vivienda nueva, y acceso al financiamiento.
+
+## Datos y fuente
+
+[CSV de las 16 regiones](datos/vivienda_regiones.csv) · [Procesamiento R](scripts/procesar_datos.R) · [Tablas estadísticas MINVU](https://centrodeestudios.minvu.gob.cl/repositorio/categoria/estadisticas/) · [Definición y total institucional](https://centrodeestudios.minvu.gob.cl/deficit-habitacional/).
+
+La capa geográfica consultada inicialmente sumaba 479.031 y no conciliaba con el total del libro. Se conservó para auditoría, pero no se utiliza en estos gráficos; no se presupone la causa de la discrepancia.

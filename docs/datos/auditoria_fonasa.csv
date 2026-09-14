@@ -1,0 +1,9 @@
+archivo,anio,filas,claves_repetidas,beneficiarios,publicado_en_grafico
+Resultados Beneficiarios 201812.csv,2018,452892,191148,14102709,FALSE
+Resultados Beneficiarios 201912.csv,2019,502088,221096,14841577,FALSE
+Resultados Beneficiarios 202012.csv,2020,511715,229126,15142528,FALSE
+Resultados Beneficiarios 202112.csv,2021,187845,0,15233814,TRUE
+Beneficiarios Fonasa 2022.csv,2022,193927,0,15613584,TRUE
+Beneficiarios 2023.csv,2023,64993,0,16229898,TRUE
+Beneficiarios 2024.csv,2024,113981,0,16752189,TRUE
+Beneficiarios 2025.csv,2025,126404,0,17132611,TRUE

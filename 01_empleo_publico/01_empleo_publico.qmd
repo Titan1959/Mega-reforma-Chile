@@ -1,0 +1,7 @@
+---
+title: "Empleo público y capacidad estatal"
+---
+
+El artículo se mantiene en la raíz para conservar su dirección pública original.
+
+[Abrir el artículo y su código](../01_empleo_publico.qmd).

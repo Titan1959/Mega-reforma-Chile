@@ -1,0 +1,56 @@
+---
+title: "Fonasa: evolución de beneficiarios"
+subtitle: "Contexto complementario del proyecto · Cortes de diciembre, 2021–2025"
+---
+
+```{r}
+#| include: false
+source("scripts/graficos.R", encoding="UTF-8")
+```
+
+
+## La pregunta
+
+¿Cómo cambió el volumen de beneficiarios de Fonasa? Se conserva el pilar de salud iniciado en Gemini, con un alcance ajustado a lo que efectivamente contienen los archivos.
+
+```{r}
+#| include: false
+f <- leer('fonasa_tramos')
+t <- f |> group_by(anio) |> summarise(beneficiarios=sum(beneficiarios),.groups='drop')
+```
+
+::: {.callout-note title="Resultado calculado"}
+Los conteos de los archivos pasan de **`r n(t$beneficiarios[t$anio==2021])`** en diciembre de 2021 a **`r n(t$beneficiarios[t$anio==2025])`** en diciembre de 2025, una variación de **`r n(100*(tail(t$beneficiarios,1)/head(t$beneficiarios,1)-1),1)`%**.
+:::
+
+## Evolución del total
+
+```{r}
+#| fig-alt: "El total agregado de beneficiarios de Fonasa aumenta entre diciembre de 2021 y diciembre de 2025."
+#| fig-cap: "Fuente: archivos Fonasa aportados al proyecto; suma de conteos por categorías."
+lineas(t,'beneficiarios',unidad='Beneficiarios registrados')
+```
+
+## Composición por tramo
+
+```{r}
+#| fig-alt: "Barras apiladas con beneficiarios de Fonasa en tramos A, B, C y D, para cada diciembre de 2021 a 2025."
+#| fig-cap: "Tramos administrativos de Fonasa. Las barras muestran cantidades, no flujos entre tramos."
+ggplot(f,aes(factor(anio),beneficiarios,fill=tramo))+geom_col(width=.65)+scale_fill_manual(values=paleta)+scale_y_continuous(labels=label_number(big.mark='.',decimal.mark=','))+labs(x=NULL,y='Beneficiarios',fill='Tramo')
+```
+
+## Lectura y limitaciones
+
+El aumento describe un mayor volumen de cobertura registrado. **No demuestra migración desde Isapres**, mayor uso de prestaciones ni insuficiencia presupuestaria. Para medir cambios individuales se necesita un registro longitudinal compatible o estadísticas oficiales de altas y bajas por origen.
+
+- Los CSV tienen conteos agregados por categorías; las filas no representan personas individuales. No incluyen una renta imponible individual para desarrollar el análisis propuesto inicialmente.
+- Las claves repetidas detectadas en 2018–2020 requieren aclaración documental. Esos años se conservan y auditan, pero **se excluyen de los gráficos**, sin eliminar registros de los originales.
+- Se homologaron los nombres de tramo y conteo para 2021–2025. No se detectaron claves repetidas ni conteos faltantes o negativos en esos cinco archivos. Esto es una validación interna, no una certificación externa de cobertura.
+- No se restan los stocks de Fonasa e Isapres para estimar flujos. El libro de Isapres permanece disponible en la carpeta original para una futura conciliación.
+- Esta sección es contexto del proyecto previo, no una evaluación sanitaria ni causal del plan de 2026.
+
+## Datos y trazabilidad
+
+[CSV por tramo](datos/fonasa_tramos.csv) · [Auditoría de los ocho archivos](datos/auditoria_fonasa.csv) · [Procesamiento R](scripts/procesar_datos.R) · [Portal de datos abiertos de Fonasa](https://datosabiertos.fonasa.cl/dimensiones-beneficiarios/).
+
+Los originales fueron aportados por el autor. Falta conciliar cada edición con su descarga institucional exacta; los totales se presentan como sumas de esos archivos. El diccionario disponible no coincide plenamente con sus columnas.

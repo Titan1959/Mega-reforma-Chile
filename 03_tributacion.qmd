@@ -1,0 +1,48 @@
+---
+title: "Tributación: la base del debate"
+subtitle: "SII · Recaudación como porcentaje del PIB · 2018–2025"
+---
+
+```{r}
+#| include: false
+source("scripts/graficos.R", encoding="UTF-8")
+```
+
+
+## La pregunta
+
+¿Cuál era la recaudación antes de las propuestas de rebaja tributaria? El anuncio de abril plantea reducir la tasa corporativa de 27% a 23%. La recaudación agregada contextualiza la discusión, pero no calcula el efecto de cambiar esa tasa. [Fuente del anuncio](https://msgg.gob.cl/wp/2026/04/23/presidente-kast-firma-proyecto-de-ley-del-plan-de-reconstruccion-nacional-y-desarrollo-economico-y-social/).
+
+```{r}
+#| include: false
+d <- leer('tributacion') |> filter(anio>=2018)
+u <- filter(d,anio==2025)
+```
+
+::: {.callout-note title="Resultado calculado"}
+En 2025, el total de ingresos tributarios de esta tabla equivale a **`r n(u$total,2)`% del PIB**. Renta representa **`r n(u$renta,2)`%** e IVA **`r n(u$iva,2)`%**. Son cifras preliminares.
+:::
+
+## Recaudación y composición
+
+```{r}
+#| fig-alt: "Series de recaudación total, renta e IVA como porcentaje del PIB entre 2018 y 2025; el total alcanza un máximo del período en 2022."
+#| fig-cap: "Fuente: SII, serie 2009–2025, hoja Consolidados. 2024 provisional; 2025 preliminar."
+g <- d |> select(anio,Total=total,Renta=renta,IVA=iva) |> pivot_longer(-anio,names_to='tipo',values_to='pct')
+lineas(g,'pct','tipo','Porcentaje del PIB')
+```
+
+## Lectura y limitaciones
+
+La serie varía entre años: una recaudación mayor no prueba una tasa legal mayor y una caída no identifica su causa. Cambian las bases tributarias, la actividad, las devoluciones y el PIB usado como denominador.
+
+- **Renta no es solo impuesto corporativo.** No se multiplica toda la recaudación de renta por la reducción propuesta: eso produciría un costo fiscal engañoso.
+- Se usa la fila **TOTAL INGRESOS TRIBUTARIOS**, que el libro distingue de **INGRESOS TRIBUTARIOS NETOS**, ajustada además por cuentas no tributarias. No se mezclan las dos filas.
+- Los valores originales están almacenados como fracción del PIB; el código los multiplica por 100. IVA corresponde al agregado de la tabla, no a la fila de IVA bruto.
+- No hay distribución del beneficio por hogar o empresa ni estimación causal sobre empleo o inversión.
+
+**Para evaluar la medida:** incorporar el informe financiero, base gravada y regímenes afectados; luego comparar escenarios explícitos, con sensibilidad de la respuesta de inversión y recaudación.
+
+## Datos y fuente
+
+[Descargar CSV 2009–2025](datos/tributacion.csv) · [Procesamiento R](scripts/procesar_datos.R) · [Serie de ingresos tributarios del SII](https://www.sii.cl/sobre_el_sii/serie_de_ingresos_tributarios.html).

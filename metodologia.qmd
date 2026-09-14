@@ -1,0 +1,60 @@
+---
+title: "Método, fuentes y estado del proyecto"
+subtitle: "Trazabilidad de los datos y límites de las conclusiones"
+---
+
+```{r}
+#| include: false
+source("scripts/graficos.R", encoding="UTF-8")
+```
+
+
+## Qué se acordó y qué sigue siendo una propuesta
+
+**Decisiones del autor:** desarrollar un portafolio de investigación en ciencia política; mantener R, Quarto y GitHub Pages; partir de una mirada general y continuar por temas; preservar empleo público y salud; centrar esta ampliación en el Plan de Reconstrucción Nacional de 2026.
+
+**Hipótesis y propuestas de trabajo, todavía no resultados:** interpretar una transición general desde prestación estatal a subsidios a la demanda; vincular cobertura sanitaria con capacidad estatal; medir migración Isapre–Fonasa; analizar fallos judiciales y sostenibilidad. Estas líneas requieren contrastación. El traspaso de Gemini las mencionaba, pero eso no constituye evidencia empírica ni prueba de que formen parte de este plan.
+
+**Hecho en esta edición:** descarga de cinco fuentes institucionales nuevas; procesamiento reproducible; comprobaciones de consistencia; cinco páginas nuevas; actualización del empleo público y elaboración de una primera página descriptiva de Fonasa.
+
+## Fuentes y unidades
+
+| Archivo procesado | Institución / insumo | Unidad y cobertura | Período conservado |
+|---|---|---|---|
+| Empleo público | DIPRES, archivo previo | Promedio anual de cargos por dependencia | 2021–2025 |
+| Salud | Archivos Fonasa aportados | Suma de beneficiarios por categorías a diciembre | Gráficos 2021–2025; auditoría 2018–2025 |
+| Tributación | SII, Excel | Porcentaje del PIB, total de ingresos tributarios | 2009–2025 |
+| Empleo | INE, ENE anual | Tasas (%); ocupados en miles, por sexo | 2010–2025 |
+| Finanzas públicas | DIPRES, Gobierno Central Total | Ingresos, gastos y balance, % del PIB | 1990–2025 |
+| Vivienda | MINVU, metodología completa Censo 2024 | Requerimientos y hogares por región | 2024 |
+| Inversión | Banco Central, tabla HTML | FBCF / PIB a precios corrientes (%) | 2013–2025 |
+
+[Descargar inventario de fuentes y huellas SHA-256](fuentes/manifest.csv). Las huellas identifican la copia utilizada; no certifican por sí solas su validez metodológica. La fecha de incorporación se distingue del período medido. Las descargas iniciales ocurrieron el 13 y 14 de septiembre de 2026; el inventario registra la fecha de consolidación de esta edición. Los archivos previos del autor no tienen fecha original de descarga documentada.
+
+## Cómo reproducir
+
+Abrir el proyecto en RStudio, instalar las dependencias de `scripts/instalar_paquetes.R` y ejecutar desde la raíz:
+
+```r
+source("scripts/procesar_datos.R", encoding = "UTF-8")
+```
+
+Luego ejecutar en una terminal:
+
+```bash
+quarto render
+```
+
+Los originales nuevos están en las carpetas temáticas. Los CSV originales de salud permanecen en la carpeta local; no se incorporan al sitio. Una copia del repositorio puede renderizar los gráficos con los CSV depurados incluidos; para reconstruirlos desde cero necesita además los originales señalados en el inventario.
+
+[Descargar script de procesamiento](scripts/procesar_datos.R) · [Código compartido de gráficos](scripts/graficos.R) · [Instalación de paquetes](scripts/instalar_paquetes.R) · [Sesión R utilizada](datos/sesion_R.txt).
+
+## Comprobaciones realizadas
+
+Se verifica que las dependencias de empleo público sumen los totales; que los conteos de Fonasa no sean negativos ni faltantes y sus tramos reconcilien; que las tasas tengan unidades válidas; que ingresos menos gastos coincida con el balance fiscal; y que las 16 regiones de vivienda sumen el total nacional. Los gráficos se construyen sobre los archivos depurados, sin cifras simuladas.
+
+## Límites comunes
+
+Los análisis son **descriptivos y previos al plan**. No estiman efectos causales, no prueban que cada medida esté justificada ni sustituyen un análisis del articulado y sus informes financieros. Se evita confundir correlación, diagnóstico del problema y eficacia de la solución.
+
+Para completar la evaluación faltan: inventario preciso de medidas y versiones; costos fiscales; distribución de beneficios; mecanismos de implementación; y diseños de evaluación adecuados a cada propuesta. No hay un conteo defendible de artículos terminados mientras no exista ese inventario.

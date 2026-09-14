@@ -1,0 +1,55 @@
+---
+title: "Finanzas públicas: ingresos, gastos y balance"
+subtitle: "DIPRES · Gobierno Central Total · Porcentaje del PIB, 2018–2025"
+---
+
+```{r}
+#| include: false
+source("scripts/graficos.R", encoding="UTF-8")
+```
+
+
+## La pregunta
+
+¿Con qué situación fiscal llega el Gobierno Central al debate sobre reconstrucción, impuestos y gasto? El orden fiscal forma parte del anuncio de marzo. [Fuente del alcance](https://www.interior.gob.cl/noticias/2026/03/14/presidente-jose-antonio-kast-presenta-proyecto-de-ley-de-reconstruccion-nacional-junto-a-ministro-alvarado/).
+
+```{r}
+#| include: false
+d <- leer('finanzas_publicas') |> filter(anio>=2018);u<-filter(d,anio==2025)
+```
+
+::: {.callout-note title="Resultado calculado"}
+En 2025, los ingresos totales equivalen a **`r n(u$ingresos_pct_pib,2)`% del PIB**, los gastos totales a **`r n(u$gastos_pct_pib,2)`%** y el balance a **`r n(u$balance_pct_pib,2)`%**. Un balance negativo indica déficit en esta medición.
+:::
+
+## Ingresos y gastos
+
+```{r}
+#| fig-alt: "Ingresos y gastos del Gobierno Central como porcentaje del PIB; en 2025 el gasto supera al ingreso."
+#| fig-cap: "Fuente: DIPRES, Estado de Operaciones del Gobierno Central Total 1990–2025."
+g<-d |> select(anio,Ingresos=ingresos_pct_pib,Gastos=gastos_pct_pib) |> pivot_longer(-anio,names_to='serie',values_to='pct')
+lineas(g,'pct','serie','Porcentaje del PIB')
+```
+
+## Balance efectivo
+
+```{r}
+#| fig-alt: "Balance fiscal de 2018 a 2025 con línea en cero: déficit en todos estos años salvo 2022."
+#| fig-cap: "Préstamo neto / endeudamiento neto. Se verifica en R la identidad ingresos menos gastos."
+ggplot(d,aes(factor(anio),balance_pct_pib))+geom_col(fill=paleta[1],width=.65)+geom_hline(yintercept=0,colour='#4b5563')+scale_y_continuous(labels=label_number(decimal.mark=','))+labs(x=NULL,y='Balance (% del PIB)')
+```
+
+## Lectura y limitaciones
+
+El balance identifica una restricción presupuestaria relevante para discutir nuevas obligaciones o menores ingresos. Por sí solo no determina qué gasto recortar ni prueba que una rebaja tributaria se autofinancie.
+
+- Se usan **TOTAL INGRESOS**, **TOTAL GASTOS** y **PRÉSTAMO NETO/ENDEUDAMIENTO NETO** del mismo cuadro. Los totales incluyen operaciones de capital; no se confunden con las filas de ingresos y gastos corrientes.
+- Es Gobierno Central Total, no Gobierno General ni todo el sector público. No se incluye automáticamente el presupuesto de municipios o empresas públicas.
+- El balance efectivo no es el estructural. Tampoco es un nivel de deuda ni una proyección para 2026.
+- El cociente cambia por su numerador y por el PIB; estos gráficos no descomponen esas causas ni cuantifican efectos de la pandemia.
+
+**Para evaluar el plan:** conciliar su informe financiero, calendario de implementación y fuentes de financiamiento, y medir efectos distributivos y sobre los servicios públicos.
+
+## Datos y fuente
+
+[CSV 1990–2025](datos/finanzas_publicas.csv) · [Procesamiento R](scripts/procesar_datos.R) · [DIPRES: estado de operaciones anuales](https://www.dipres.gob.cl/598/w3-propertyvalue-15494.html).

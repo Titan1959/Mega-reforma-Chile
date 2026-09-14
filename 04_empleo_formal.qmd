@@ -1,0 +1,55 @@
+---
+title: "Empleo: el diagnóstico previo al incentivo"
+subtitle: "INE · Encuesta Nacional de Empleo · Estimaciones anuales, 2018–2025"
+---
+
+```{r}
+#| include: false
+source("scripts/graficos.R", encoding="UTF-8")
+```
+
+
+## La pregunta
+
+¿Cómo evolucionaron la ocupación y la desocupación antes del incentivo al empleo formal anunciado en abril de 2026? [Fuente del anuncio](https://msgg.gob.cl/wp/2026/04/23/presidente-kast-firma-proyecto-de-ley-del-plan-de-reconstruccion-nacional-y-desarrollo-economico-y-social/).
+
+```{r}
+#| include: false
+d <- leer('empleo_ene') |> filter(anio>=2018)
+t <- filter(d,sexo=='Total');u <- filter(t,anio==2025)
+```
+
+::: {.callout-note title="Resultado calculado"}
+En 2025, la tasa de desocupación anual fue **`r n(u$desocupacion_pct,1)`%** y la tasa de ocupación **`r n(u$ocupacion_pct,1)`%**. Miden fenómenos distintos y usan denominadores diferentes.
+:::
+
+## Ocupación por sexo
+
+```{r}
+#| fig-alt: "Tasa de ocupación anual de hombres y mujeres entre 2018 y 2025; la tasa masculina supera a la femenina durante todo el período."
+#| fig-cap: "Fuente: INE, ENE, estimaciones anuales. Personas de 15 años o más."
+lineas(filter(d,sexo!='Total'),'ocupacion_pct','sexo','Ocupados / población de 15+ (%)')
+```
+
+## Desocupación nacional
+
+```{r}
+#| fig-alt: "La tasa de desocupación anual sube en 2020 y llega a aproximadamente 8,6 por ciento en 2025."
+#| fig-cap: "Fuente: INE. Desocupados como porcentaje de la fuerza de trabajo."
+lineas(t,'desocupacion_pct',unidad='Desocupados / fuerza de trabajo (%)')
+```
+
+## Lectura y limitaciones
+
+Las series muestran diferencias por sexo y variaciones del mercado laboral. No identifican cuántos puestos generaría un incentivo ni cuántas contrataciones ocurrirían de todas formas.
+
+- **Empleo total no equivale a empleo formal.** Este Excel no desagrega informalidad. Como referencia documental separada, la [separata anual ENE 2025](https://www.ine.gob.cl/docs/default-source/ocupacion-y-desocupacion/publicaciones-y-anuarios/separatas/anuales/separata-2025.pdf) informa una tasa anual de ocupación informal de 26,2%; no se transforma ese dato aislado en una serie inventada.
+- La tasa de ocupación divide ocupados por población de 15 años o más; desocupación divide desocupados por fuerza de trabajo. Sus porcentajes no son complementarios.
+- Son estimaciones de una encuesta, sujetas a error muestral y revisiones. No se afirma significancia estadística de las diferencias; estos gráficos no incluyen intervalos de confianza.
+- Se usan las estimaciones anuales publicadas por el INE, sin promediar trimestres móviles superpuestos. El CSV conserva también niveles de ocupados, expresados en miles.
+
+**Para evaluar el incentivo:** se necesitan elegibilidad, remuneraciones, formalidad, duración de los empleos y una comparación que permita distinguir creación adicional de puestos y sustitución de trabajadores.
+
+## Datos y fuente
+
+[CSV 2010–2025](datos/empleo_ene.csv) · [Procesamiento R](scripts/procesar_datos.R) · [INE: ocupación y desocupación](https://www.ine.gob.cl/estadisticas-por-tema/mercado-laboral/ocupacion-y-desocupacion).

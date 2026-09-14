@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Política para no políticos - Empleo público y capacidad estatal</title>
+<title>Política para no políticos - Empleo: el diagnóstico previo al incentivo</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -147,7 +147,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link active" href="./01_empleo_publico.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="./01_empleo_publico.html" rel="" target="">
  <span class="menu-text">Capacidad estatal</span></a>
   </li>  
   <li class="nav-item">
@@ -175,7 +175,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#la-pregunta" id="toc-la-pregunta" class="nav-link active" data-scroll-target="#la-pregunta">La pregunta</a></li>
-  <li><a href="#evolución-de-las-principales-dependencias" id="toc-evolución-de-las-principales-dependencias" class="nav-link" data-scroll-target="#evolución-de-las-principales-dependencias">Evolución de las principales dependencias</a></li>
+  <li><a href="#ocupación-por-sexo" id="toc-ocupación-por-sexo" class="nav-link" data-scroll-target="#ocupación-por-sexo">Ocupación por sexo</a></li>
+  <li><a href="#desocupación-nacional" id="toc-desocupación-nacional" class="nav-link" data-scroll-target="#desocupación-nacional">Desocupación nacional</a></li>
   <li><a href="#lectura-y-limitaciones" id="toc-lectura-y-limitaciones" class="nav-link" data-scroll-target="#lectura-y-limitaciones">Lectura y limitaciones</a></li>
   <li><a href="#datos-y-fuente" id="toc-datos-y-fuente" class="nav-link" data-scroll-target="#datos-y-fuente">Datos y fuente</a></li>
   </ul>
@@ -186,8 +187,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Empleo público y capacidad estatal</h1>
-<p class="subtitle lead">DIPRES · Promedio anual de cargos · 2021–2025</p>
+<h1 class="title">Empleo: el diagnóstico previo al incentivo</h1>
+<p class="subtitle lead">INE · Encuesta Nacional de Empleo · Estimaciones anuales, 2018–2025</p>
 </div>
 
 
@@ -204,7 +205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="la-pregunta" class="level2">
 <h2 class="anchored" data-anchor-id="la-pregunta">La pregunta</h2>
-<p>¿Dónde creció el personal disponible del sector público antes del plan? Es un antecedente para discutir reorganización y gasto, pero el número de cargos no mide por sí solo eficiencia ni calidad de los servicios.</p>
+<p>¿Cómo evolucionaron la ocupación y la desocupación antes del incentivo al empleo formal anunciado en abril de 2026? <a href="https://msgg.gob.cl/wp/2026/04/23/presidente-kast-firma-proyecto-de-ley-del-plan-de-reconstruccion-nacional-y-desarrollo-economico-y-social/">Fuente del anuncio</a>.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Resultado calculado">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -215,107 +216,58 @@ Resultado calculado
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>El total pasó de <strong>987.453</strong> a <strong>1.093.050</strong> cargos: un aumento de <strong>10,7%</strong>. La Administración Central concentra el mayor incremento absoluto entre las dependencias de esta tabla.</p>
+<p>En 2025, la tasa de desocupación anual fue <strong>8,6%</strong> y la tasa de ocupación <strong>56,8%</strong>. Miden fenómenos distintos y usan denominadores diferentes.</p>
 </div>
 </div>
 </section>
-<section id="evolución-de-las-principales-dependencias" class="level2">
-<h2 class="anchored" data-anchor-id="evolución-de-las-principales-dependencias">Evolución de las principales dependencias</h2>
+<section id="ocupación-por-sexo" class="level2">
+<h2 class="anchored" data-anchor-id="ocupación-por-sexo">Ocupación por sexo</h2>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lineas</span>(<span class="fu">filter</span>(e,dependencia<span class="sc">%in%</span><span class="fu">c</span>(<span class="st">'Administración Central'</span>,<span class="st">'Municipalidades'</span>)),<span class="st">'cargos'</span>,<span class="st">'dependencia'</span>,<span class="st">'Cargos (promedio anual)'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lineas</span>(<span class="fu">filter</span>(d,sexo<span class="sc">!=</span><span class="st">'Total'</span>),<span class="st">'ocupacion_pct'</span>,<span class="st">'sexo'</span>,<span class="st">'Ocupados / población de 15+ (%)'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01_empleo_publico_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" alt="Series 2021 a 2025 de cargos de la Administración Central y municipalidades; ambas crecen, con mayor incremento en la primera." width="1280"></p>
-<figcaption class="figure-caption">Fuente: DIPRES, archivo aportado al proyecto, hoja General. Promedio anual de cargos.</figcaption>
+<p><img src="04_empleo_formal_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" alt="Tasa de ocupación anual de hombres y mujeres entre 2018 y 2025; la tasa masculina supera a la femenina durante todo el período." width="1280"></p>
+<figcaption class="figure-caption">Fuente: INE, ENE, estimaciones anuales. Personas de 15 años o más.</figcaption>
 </figure>
 </div>
 </div>
 </div>
+</section>
+<section id="desocupación-nacional" class="level2">
+<h2 class="anchored" data-anchor-id="desocupación-nacional">Desocupación nacional</h2>
 <div class="cell">
 <details>
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tabla</span>(comp <span class="sc">|&gt;</span> <span class="fu">transmute</span>(<span class="at">Dependencia=</span>dependencia,<span class="st">`</span><span class="at">2021</span><span class="st">`</span><span class="ot">=</span>a2021,<span class="st">`</span><span class="at">2025</span><span class="st">`</span><span class="ot">=</span>a2025,<span class="st">`</span><span class="at">Cambio en cargos</span><span class="st">`</span><span class="ot">=</span>cambio,<span class="st">`</span><span class="at">Variación (%)</span><span class="st">`</span><span class="ot">=</span>variacion))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lineas</span>(t,<span class="st">'desocupacion_pct'</span>,<span class="at">unidad=</span><span class="st">'Desocupados / fuerza de trabajo (%)'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
-<caption>Cambio por dependencia, 2021–2025 </caption>
-<thead>
-<tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">Dependencia</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">2021</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">2025</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Cambio en cargos</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Variación (%)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Administración Central</td>
-<td style="text-align: right;">428.600</td>
-<td style="text-align: right;">510.160</td>
-<td style="text-align: right;">81.560</td>
-<td style="text-align: right;">19,03</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Organismos Autónomos</td>
-<td style="text-align: right;">25.227</td>
-<td style="text-align: right;">25.565</td>
-<td style="text-align: right;">338</td>
-<td style="text-align: right;">1,34</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Municipalidades</td>
-<td style="text-align: right;">435.432</td>
-<td style="text-align: right;">450.947</td>
-<td style="text-align: right;">15.515</td>
-<td style="text-align: right;">3,56</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Universidades y CFT Estatales</td>
-<td style="text-align: right;">51.080</td>
-<td style="text-align: right;">58.417</td>
-<td style="text-align: right;">7.337</td>
-<td style="text-align: right;">14,36</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Empresas Públicas</td>
-<td style="text-align: right;">46.350</td>
-<td style="text-align: right;">47.174</td>
-<td style="text-align: right;">824</td>
-<td style="text-align: right;">1,78</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Otras Instituciones Públicas</td>
-<td style="text-align: right;">764</td>
-<td style="text-align: right;">787</td>
-<td style="text-align: right;">23</td>
-<td style="text-align: right;">3,01</td>
-</tr>
-</tbody>
-</table>
-
-
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="04_empleo_formal_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" alt="La tasa de desocupación anual sube en 2020 y llega a aproximadamente 8,6 por ciento en 2025." width="1280"></p>
+<figcaption class="figure-caption">Fuente: INE. Desocupados como porcentaje de la fuerza de trabajo.</figcaption>
+</figure>
+</div>
 </div>
 </div>
 </section>
 <section id="lectura-y-limitaciones" class="level2">
 <h2 class="anchored" data-anchor-id="lectura-y-limitaciones">Lectura y limitaciones</h2>
-<p>El crecimiento desigual orienta dónde profundizar. No permite afirmar que existan cargos prescindibles ni explicar el cambio por nuevas instituciones sin desagregar servicios y funciones. Los traspasos entre dependencias también deben examinarse antes de interpretar aumentos como contrataciones nuevas.</p>
+<p>Las series muestran diferencias por sexo y variaciones del mercado laboral. No identifican cuántos puestos generaría un incentivo ni cuántas contrataciones ocurrirían de todas formas.</p>
 <ul>
-<li><strong>Unidad:</strong> promedio anual de cargos, no personas únicas ni fotografía al 31 de diciembre. Una persona puede desempeñar más de un cargo.</li>
-<li><strong>Cobertura:</strong> el archivo contiene exclusiones y reglas institucionales; no es un censo irrestricto de todo trabajador financiado por el Estado. Las notas excluyen senadores y diputados y aplican cobertura acotada a Fuerzas Armadas y de Orden.</li>
-<li><strong>Comparabilidad:</strong> las ediciones pueden revisar cifras y metodología. Esta página usa una sola edición y verifica que las dependencias sumen el total de cada año.</li>
-<li><strong>Para evaluar recortes:</strong> faltan remuneraciones, funciones, demanda de atención, productividad y consecuencias sobre los servicios. No se calculan ahorros a partir del número de cargos.</li>
+<li><strong>Empleo total no equivale a empleo formal.</strong> Este Excel no desagrega informalidad. Como referencia documental separada, la <a href="https://www.ine.gob.cl/docs/default-source/ocupacion-y-desocupacion/publicaciones-y-anuarios/separatas/anuales/separata-2025.pdf">separata anual ENE 2025</a> informa una tasa anual de ocupación informal de 26,2%; no se transforma ese dato aislado en una serie inventada.</li>
+<li>La tasa de ocupación divide ocupados por población de 15 años o más; desocupación divide desocupados por fuerza de trabajo. Sus porcentajes no son complementarios.</li>
+<li>Son estimaciones de una encuesta, sujetas a error muestral y revisiones. No se afirma significancia estadística de las diferencias; estos gráficos no incluyen intervalos de confianza.</li>
+<li>Se usan las estimaciones anuales publicadas por el INE, sin promediar trimestres móviles superpuestos. El CSV conserva también niveles de ocupados, expresados en miles.</li>
 </ul>
+<p><strong>Para evaluar el incentivo:</strong> se necesitan elegibilidad, remuneraciones, formalidad, duración de los empleos y una comparación que permita distinguir creación adicional de puestos y sustitución de trabajadores.</p>
 </section>
 <section id="datos-y-fuente" class="level2">
 <h2 class="anchored" data-anchor-id="datos-y-fuente">Datos y fuente</h2>
-<p><a href="datos/empleo_publico.csv">Descargar CSV</a> · <a href="scripts/procesar_datos.R">Procesamiento R</a> · <a href="https://www.dipres.gob.cl/598/w3-article-190248.html">Cuadros de empleo público DIPRES</a>.</p>
-<p>Se conserva la base que ya estaba en el proyecto. Su fecha original de descarga no quedó registrada; el inventario documenta la copia utilizada ahora.</p>
+<p><a href="datos/empleo_ene.csv">CSV 2010–2025</a> · <a href="scripts/procesar_datos.R">Procesamiento R</a> · <a href="https://www.ine.gob.cl/estadisticas-por-tema/mercado-laboral/ocupacion-y-desocupacion">INE: ocupación y desocupación</a>.</p>
 
 
 </section>

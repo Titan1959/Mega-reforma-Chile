@@ -1,2 +1,7 @@
 /.quarto/
-.Rproj.user
+.Rproj.user/
+.Rhistory
+.RData
+02_salud_fonasa/*.csv
+02_salud_fonasa/*.xlsx
+**/.DS_Store
